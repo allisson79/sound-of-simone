@@ -163,7 +163,7 @@ export default {
       const tokenData = ${tokenDataJson};
       const targetOrigin = 'https://soundofsimone.no';
       
-      function receiveMessage(message) {
+      function receiveMessage(_message) {
         window.opener.postMessage(
           'authorization:github:success:' + JSON.stringify(tokenData),
           targetOrigin
@@ -212,9 +212,8 @@ export default {
 </head>
 <body>
   <script>
-    const targetOrigin = '${targetOrigin}';
     if (window.opener) {
-      window.opener.postMessage('authorization:${provider}:success', targetOrigin);
+      window.opener.postMessage('authorization:${provider}:success', '${targetOrigin}');
       window.close();
     }
   </script>
