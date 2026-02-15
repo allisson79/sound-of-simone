@@ -1,8 +1,15 @@
-import { randomBytes } from 'crypto';
-
 interface Env {
   OAUTH_CLIENT_ID: string;
   OAUTH_CLIENT_SECRET: string;
+}
+
+// Helper function to generate random hex string using Web Crypto API
+function generateRandomHex(length: number): string {
+  const bytes = new Uint8Array(length);
+  crypto.getRandomValues(bytes);
+  return Array.from(bytes)
+    .map(b => b.toString(16).padStart(2, '0'))
+    .join('');
 }
 
 export default {
@@ -10,9 +17,9 @@ export default {
     const url = new URL(request.url);
     const path = url.pathname;
 
-    // CORS headers for all responses
+    // CORS headers for all responses - restricted to the main site
     const corsHeaders = {
-      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Origin': 'https://soundofsimone.no',
       'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type',
     };
@@ -33,7 +40,7 @@ export default {
         });
       }
 
-      const state = randomBytes(16).toString('hex');
+      const state = generateRandomHex(16);
       const redirectUri = `https://${url.hostname}/callback`;
       
       const authUrl = new URL('https://github.com/login/oauth/authorize');
@@ -102,6 +109,12 @@ export default {
           });
         }
 
+        // Prepare token data as JSON to safely embed in HTML
+        const tokenData = JSON.stringify({ 
+          token: accessToken, 
+          provider: 'github' 
+        });
+
         // Return success page that sends token back to opener window
         const html = `
 <!DOCTYPE html>
@@ -147,16 +160,19 @@ export default {
   </div>
   <script>
     (function() {
+      const tokenData = ${tokenData};
+      const targetOrigin = 'https://soundofsimone.no';
+      
       function receiveMessage(message) {
         window.opener.postMessage(
-          'authorization:github:success:${JSON.stringify({ token: accessToken, provider: 'github' }).replace(/'/g, "\\'")}',
-          message.origin
+          'authorization:github:success:' + JSON.stringify(tokenData),
+          targetOrigin
         );
         window.removeEventListener('message', receiveMessage, false);
       }
       window.addEventListener('message', receiveMessage, false);
       
-      window.opener.postMessage('authorizing:github', '*');
+      window.opener.postMessage('authorizing:github', targetOrigin);
       
       // Auto-close after 2 seconds
       setTimeout(function() {
@@ -187,6 +203,7 @@ export default {
     // Success endpoint (optional, for direct access)
     if (path === '/success') {
       const provider = url.searchParams.get('provider') || 'github';
+      const targetOrigin = 'https://soundofsimone.no';
       const html = `
 <!DOCTYPE html>
 <html>
@@ -195,8 +212,9 @@ export default {
 </head>
 <body>
   <script>
+    const targetOrigin = '${targetOrigin}';
     if (window.opener) {
-      window.opener.postMessage('authorization:${provider}:success', '*');
+      window.opener.postMessage('authorization:${provider}:success', targetOrigin);
       window.close();
     }
   </script>
