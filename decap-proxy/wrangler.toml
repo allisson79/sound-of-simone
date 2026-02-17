@@ -1,0 +1,9 @@
+name = "decap-oauth-proxy"
+main = "src/index.ts"
+compatibility_date = "2025-01-01"
+
+[vars]
+# Public variables (non-sensitive)
+
+# Add secrets via: npx wrangler secret put OAUTH_CLIENT_ID
+# Add secrets via: npx wrangler secret put OAUTH_CLIENT_SECRET
