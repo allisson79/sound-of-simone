@@ -36,6 +36,33 @@ A starter template for building a static site with [Astro](https://astro.build) 
 - **[Design System Setup](docs/design/DESIGN-SYSTEM-SETUP.md)** - Complete design system documentation
 - **[Design Quick Reference](docs/design/DESIGN-QUICK-REFERENCE.md)** - Quick reference for design tokens and components
 
+## 📁 Project Structure
+
+```
+sound-of-simone/
+├── .github/              # GitHub Actions workflows
+├── archive/              # Archived/old files (not used in builds)
+│   ├── old-versions/     # Previous versions of files
+│   └── prototypes/       # Design prototypes and experiments
+├── decap-proxy/          # Cloudflare Worker for OAuth proxy
+├── docs/                 # 📚 All documentation
+│   ├── deployment/       # Deployment guides
+│   ├── design/          # Design system docs
+│   └── README.md        # Documentation index
+├── public/              # Static assets
+├── scripts/             # Build and deployment scripts
+├── src/                 # Source code
+│   ├── assets/          # Images, fonts, etc.
+│   ├── components/      # Reusable Astro components
+│   ├── layouts/         # Page layouts
+│   ├── pages/           # Page routes
+│   └── styles/          # Global styles and design tokens
+├── package.json
+└── README.md           # This file
+```
+
+See [docs/README.md](docs/README.md) for detailed documentation structure.
+
 ## Features
 
 - **Astro** for building fast, content-focused static sites.
