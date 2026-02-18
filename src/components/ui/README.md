@@ -72,6 +72,54 @@ import Container from '@/components/ui/Container.astro';
 </Container>
 ```
 
+### Logo
+The Sound of Simone wordmark logo with distinctive parallel vertical lines.
+
+**Props:**
+- `size`: 'sm' | 'base' | 'lg' | 'xl' (default: 'base')
+- `color`: CSS color value (default: '#411e25' - brand burgundy)
+- `class`: Additional CSS classes
+- `ariaLabel`: Accessibility label (default: 'Sound of Simone')
+
+**Usage:**
+```astro
+---
+import Logo from '@/components/ui/Logo.astro';
+---
+
+<Logo />
+<Logo size="lg" />
+<Logo color="#ffffff" />
+```
+
+### WaveAnimation
+An animated sound wave visualization in a circle. Prepared for future use as an interactive menu button.
+
+**Props:**
+- `size`: 'sm' | 'base' | 'lg' | 'xl' (default: 'base')
+- `color`: CSS color for wave bars (default: '#411e25')
+- `ringColor`: CSS color for circle ring (default: '#411e25')
+- `animationSpeed`: 'slow' | 'normal' | 'fast' (default: 'normal')
+- `class`: Additional CSS classes
+- `ariaLabel`: Accessibility label (default: 'Sound wave animation')
+
+**Features:**
+- Organic, energetic pulse animation
+- Respects `prefers-reduced-motion` user preference
+- Includes hover and focus states for future button use
+- Unique clip path IDs to avoid conflicts
+
+**Usage:**
+```astro
+---
+import WaveAnimation from '@/components/ui/WaveAnimation.astro';
+---
+
+<WaveAnimation />
+<WaveAnimation size="lg" animationSpeed="fast" />
+<WaveAnimation color="#ffffff" ringColor="#ffffff" />
+```
+
 ## Creating New Components
 
 When creating new UI components:
