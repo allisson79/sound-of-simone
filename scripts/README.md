@@ -4,6 +4,23 @@ This directory contains utility scripts for deployment and verification.
 
 ## Available Scripts
 
+### deploy-dev.sh
+
+**Purpose:** Build and deploy the current Astro site to the DEV Pages project.
+
+**Usage:**
+```bash
+./scripts/deploy-dev.sh
+```
+
+**What it does:**
+- ✅ Installs dependencies automatically if `node_modules` is missing
+- ✅ Builds Astro output into `dist/`
+- ✅ Deploys to Cloudflare Pages project `sound-of-simone-dev`
+
+**Result:**
+- Updated DEV site at `https://sound-of-simone-dev.pages.dev`
+
 ### verify-deployment.sh
 
 **Purpose:** Verify that all deployed components are accessible and working correctly.
