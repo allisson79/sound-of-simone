@@ -6,6 +6,18 @@ import { BOOKING_URL, BRAND_COLOR, DEV_MODE } from '../config/site';
   <div class="hero-bg" aria-hidden="true"></div>
 
   <div class="container hero-layout">
+    <aside class="hero-visual" aria-hidden="true">
+      <div class="placeholder-image placeholder-image--large">
+        <p class="placeholder-label">Generisk eksempelbilde</p>
+        <div class="placeholder-line placeholder-line--wide"></div>
+        <div class="placeholder-line"></div>
+        <div class="placeholder-line placeholder-line--short"></div>
+      </div>
+      <div class="placeholder-image placeholder-image--small">
+        <p class="placeholder-badge">Eksempel</p>
+      </div>
+    </aside>
+
     <div class="hero-content">
       {DEV_MODE && <p class="hero-preview">Forhåndsvisning</p>}
       <p class="hero-kicker">Sound of Simone</p>
@@ -14,16 +26,7 @@ import { BOOKING_URL, BRAND_COLOR, DEV_MODE } from '../config/site';
         Skreddersydde behandlingsforløp for deg som ønsker helhetlig oppfølging, trygghet og ro i
         møte med kroppen din.
       </p>
-      <div class="hero-actions">
-        <a class="hero-btn hero-btn--primary" href={BOOKING_URL}>Bestill time</a>
-        <a class="hero-btn hero-btn--light" href="#tjenester">Se tjenester</a>
-      </div>
     </div>
-
-    <aside class="hero-visual" aria-hidden="true">
-      <div class="placeholder-image placeholder-image--large"></div>
-      <div class="placeholder-image placeholder-image--small"></div>
-    </aside>
   </div>
 
   <nav class="floating-nav" aria-label="Fagområder">
