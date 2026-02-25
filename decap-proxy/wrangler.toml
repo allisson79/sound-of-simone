@@ -3,7 +3,7 @@ main = "src/index.ts"
 compatibility_date = "2025-01-01"
 
 [vars]
-# Public variables (non-sensitive)
+ALLOWED_ORIGINS = "https://soundofsimone.no,https://www.soundofsimone.no,http://localhost:4321"
 
-# Add secrets via: npx wrangler secret put OAUTH_CLIENT_ID
-# Add secrets via: npx wrangler secret put OAUTH_CLIENT_SECRET
+# Add secrets via: npx wrangler secret put GITHUB_CLIENT_ID
+# Add secrets via: npx wrangler secret put GITHUB_CLIENT_SECRET

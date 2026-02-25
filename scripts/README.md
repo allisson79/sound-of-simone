@@ -22,7 +22,7 @@ MAIN_DOMAIN=soundofsimone.no PROXY_DOMAIN=decap.soundofsimone.no ./scripts/verif
 - ✅ About page (https://soundofsimone.no/about)
 - ✅ Blog posts (https://soundofsimone.no/blog/welcome)
 - ✅ CMS admin interface (https://soundofsimone.no/admin/)
-- ✅ OAuth proxy (https://decap.soundofsimone.no)
+- ✅ OAuth proxy health (https://decap.soundofsimone.no/health)
 - ✅ DNS resolution for both domains
 
 **Requirements:**
@@ -42,8 +42,8 @@ Checking CMS admin interface (https://soundofsimone.no/admin/)... ✓ OK
 
 🔐 Testing OAuth Proxy
 ======================
-Checking OAuth proxy (https://decap.soundofsimone.no)... ✓ OK
-Checking OAuth proxy response content... ✓ OK
+Checking OAuth proxy health (https://decap.soundofsimone.no/health)... ✓ OK
+Checking OAuth proxy health response content... ✓ OK
 
 🔧 Testing DNS Resolution
 ==========================
@@ -55,7 +55,7 @@ Resolving decap.soundofsimone.no... ✓ OK
 Note: This script only verifies that URLs are accessible.
 For full CMS functionality, ensure:
   1. GitHub OAuth app is configured
-  2. Worker secrets (OAUTH_CLIENT_ID, OAUTH_CLIENT_SECRET) are set
+  2. Worker secrets (GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET) are set
   3. Custom domains are properly configured in Cloudflare
 ```
 

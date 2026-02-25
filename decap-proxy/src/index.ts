@@ -1,274 +1,183 @@
 interface Env {
-  OAUTH_CLIENT_ID: string;
-  OAUTH_CLIENT_SECRET: string;
+  GITHUB_CLIENT_ID: string;
+  GITHUB_CLIENT_SECRET: string;
+  ALLOWED_ORIGINS?: string;
 }
 
-interface GitHubUser {
-  login: string;
-  id: number;
-  avatar_url: string;
-  name: string;
+const defaultAllowedOrigins = [
+  "https://soundofsimone.no",
+  "https://www.soundofsimone.no",
+  "http://localhost:4321"
+];
+
+function normalizeOrigin(value: string): string {
+  return value.replace(/\/$/, "");
 }
 
-// Helper function to generate random hex string using Web Crypto API
-function generateRandomHex(length: number): string {
-  const bytes = new Uint8Array(length);
-  crypto.getRandomValues(bytes);
-  return Array.from(bytes)
-    .map(b => b.toString(16).padStart(2, '0'))
-    .join('');
+function getAllowedOrigins(env: Env): Set<string> {
+  const fromEnv = env.ALLOWED_ORIGINS?.split(",")
+    .map((item) => item.trim())
+    .filter(Boolean);
+  const values = fromEnv && fromEnv.length > 0 ? fromEnv : defaultAllowedOrigins;
+  return new Set(values.map(normalizeOrigin));
+}
+
+function resolveOrigin(request: Request, url: URL): string {
+  const queryOrigin = url.searchParams.get("origin");
+  const headerOrigin = request.headers.get("Origin");
+
+  if (queryOrigin) {
+    return normalizeOrigin(queryOrigin);
+  }
+  if (headerOrigin) {
+    return normalizeOrigin(headerOrigin);
+  }
+  return "";
+}
+
+function getCorsHeaders(origin: string): HeadersInit {
+  if (!origin) {
+    return { Vary: "Origin" };
+  }
+
+  return {
+    "Access-Control-Allow-Origin": origin,
+    "Access-Control-Allow-Methods": "GET,OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type",
+    Vary: "Origin"
+  };
+}
+
+function jsonResponse(body: Record<string, unknown>, status = 200, headers?: HeadersInit): Response {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: {
+      "content-type": "application/json; charset=utf-8",
+      ...headers
+    }
+  });
+}
+
+function htmlResponse(html: string, headers?: HeadersInit): Response {
+  return new Response(html, {
+    status: 200,
+    headers: {
+      "content-type": "text/html; charset=utf-8",
+      ...headers
+    }
+  });
 }
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
-    const path = url.pathname;
+    const allowedOrigins = getAllowedOrigins(env);
+    const origin = resolveOrigin(request, url);
 
-    // CORS headers for all responses - restricted to the main site
-    const corsHeaders = {
-      'Access-Control-Allow-Origin': 'https://soundofsimone.no',
-      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type',
-    };
-
-    // Handle preflight requests
-    if (request.method === 'OPTIONS') {
-      return new Response(null, { headers: corsHeaders });
-    }
-
-    // Auth endpoint - initiate OAuth flow
-    if (path === '/auth') {
-      const clientId = env.OAUTH_CLIENT_ID;
-      
-      if (!clientId) {
-        return new Response('OAuth Client ID not configured', { 
-          status: 500,
-          headers: corsHeaders 
-        });
+    if (request.method === "OPTIONS") {
+      if (!origin || !allowedOrigins.has(origin)) {
+        return new Response("Forbidden", { status: 403 });
       }
 
-      const state = generateRandomHex(16);
-      const redirectUri = `https://${url.hostname}/callback`;
-      
-      const authUrl = new URL('https://github.com/login/oauth/authorize');
-      authUrl.searchParams.set('client_id', clientId);
-      authUrl.searchParams.set('redirect_uri', redirectUri);
-      authUrl.searchParams.set('scope', 'repo,user');
-      authUrl.searchParams.set('state', state);
-
-      return Response.redirect(authUrl.toString(), 302);
-    }
-
-    // Callback endpoint - exchange code for token
-    if (path === '/callback') {
-      const code = url.searchParams.get('code');
-      const state = url.searchParams.get('state');
-
-      if (!code) {
-        return new Response('Missing authorization code', { 
-          status: 400,
-          headers: corsHeaders 
-        });
-      }
-
-      const clientId = env.OAUTH_CLIENT_ID;
-      const clientSecret = env.OAUTH_CLIENT_SECRET;
-
-      if (!clientId || !clientSecret) {
-        return new Response('OAuth credentials not configured', { 
-          status: 500,
-          headers: corsHeaders 
-        });
-      }
-
-      try {
-        // Exchange code for access token
-        const tokenResponse = await fetch('https://github.com/login/oauth/access_token', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-          },
-          body: JSON.stringify({
-            client_id: clientId,
-            client_secret: clientSecret,
-            code: code,
-            redirect_uri: `https://${url.hostname}/callback`,
-          }),
-        });
-
-        const tokenData = await tokenResponse.json() as any;
-
-        if (tokenData.error) {
-          console.error('OAuth error:', tokenData);
-          return new Response(`OAuth error: ${tokenData.error_description || tokenData.error}`, { 
-            status: 400,
-            headers: corsHeaders 
-          });
-        }
-
-        const accessToken = tokenData.access_token;
-
-        if (!accessToken) {
-          return new Response('Failed to obtain access token', { 
-            status: 500,
-            headers: corsHeaders 
-          });
-        }
-
-        // Validate the token by making a test API call to GitHub
-        try {
-          const userResponse = await fetch('https://api.github.com/user', {
-            headers: {
-              'Authorization': `Bearer ${accessToken}`,
-              'Accept': 'application/vnd.github.v3+json',
-              'User-Agent': 'Decap-OAuth-Proxy',
-            },
-          });
-
-          if (!userResponse.ok) {
-            console.error('Token validation failed:', userResponse.status, userResponse.statusText);
-            return new Response(`Token validation failed: ${userResponse.statusText}`, { 
-              status: 401,
-              headers: corsHeaders 
-            });
-          }
-
-          // Token is valid if we can successfully fetch user info
-          const userData = await userResponse.json() as GitHubUser;
-          console.log('Token validated successfully for user:', userData.login);
-        } catch (validationError) {
-          console.error('Error validating token:', validationError);
-          return new Response('Failed to validate access token', { 
-            status: 500,
-            headers: corsHeaders 
-          });
-        }
-
-        // Prepare token data as JSON to safely embed in HTML
-        const tokenDataJson = JSON.stringify({ 
-          token: accessToken, 
-          provider: 'github' 
-        });
-
-        // Return success page that sends token back to opener window
-        const html = `
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Authorization Successful</title>
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-      background: #f5f5f5;
-    }
-    .container {
-      text-align: center;
-      padding: 2rem;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-    .success {
-      color: #22c55e;
-      font-size: 3rem;
-      margin-bottom: 1rem;
-    }
-    h1 {
-      color: #333;
-      margin-bottom: 0.5rem;
-    }
-    p {
-      color: #666;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div class="success">✓</div>
-    <h1>Authorization Successful</h1>
-    <p>You can close this window now.</p>
-  </div>
-  <script>
-    (function() {
-      const tokenData = ${tokenDataJson};
-      const targetOrigin = 'https://soundofsimone.no';
-      
-      function receiveMessage(_message) {
-        window.opener.postMessage(
-          'authorization:github:success:' + JSON.stringify(tokenData),
-          targetOrigin
-        );
-        window.removeEventListener('message', receiveMessage, false);
-      }
-      window.addEventListener('message', receiveMessage, false);
-      
-      window.opener.postMessage('authorizing:github', targetOrigin);
-      
-      // Auto-close after 2 seconds
-      setTimeout(function() {
-        window.close();
-      }, 2000);
-    })();
-  </script>
-</body>
-</html>
-        `;
-
-        return new Response(html, {
-          headers: {
-            ...corsHeaders,
-            'Content-Type': 'text/html',
-          },
-        });
-
-      } catch (error) {
-        console.error('Error exchanging code for token:', error);
-        return new Response('Internal server error', { 
-          status: 500,
-          headers: corsHeaders 
-        });
-      }
-    }
-
-    // Success endpoint (optional, for direct access)
-    if (path === '/success') {
-      const provider = url.searchParams.get('provider') || 'github';
-      const targetOrigin = 'https://soundofsimone.no';
-      const html = `
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Authorization Complete</title>
-</head>
-<body>
-  <script>
-    if (window.opener) {
-      window.opener.postMessage('authorization:${provider}:success', '${targetOrigin}');
-      window.close();
-    }
-  </script>
-  <p>Authorization complete. You can close this window.</p>
-</body>
-</html>
-      `;
-      
-      return new Response(html, {
-        headers: {
-          ...corsHeaders,
-          'Content-Type': 'text/html',
-        },
+      return new Response(null, {
+        status: 204,
+        headers: getCorsHeaders(origin)
       });
     }
 
-    // Default response
-    return new Response('OAuth Proxy for Decap CMS', { 
-      headers: corsHeaders 
-    });
-  },
+    if (url.pathname === "/health") {
+      return jsonResponse({ ok: true }, 200, getCorsHeaders(origin));
+    }
+
+    if (url.pathname === "/auth") {
+      if (!origin || !allowedOrigins.has(origin)) {
+        return jsonResponse({ error: "Forbidden origin" }, 403);
+      }
+
+      if (!env.GITHUB_CLIENT_ID) {
+        return jsonResponse({ error: "Missing GITHUB_CLIENT_ID" }, 500, getCorsHeaders(origin));
+      }
+
+      const callbackUrl = new URL("/callback", url.origin);
+      callbackUrl.searchParams.set("origin", origin);
+
+      const githubAuthUrl = new URL("https://github.com/login/oauth/authorize");
+      githubAuthUrl.searchParams.set("client_id", env.GITHUB_CLIENT_ID);
+      githubAuthUrl.searchParams.set("redirect_uri", callbackUrl.toString());
+      githubAuthUrl.searchParams.set("scope", "repo");
+
+      return Response.redirect(githubAuthUrl.toString(), 302);
+    }
+
+    if (url.pathname === "/callback") {
+      const callbackOrigin = normalizeOrigin(url.searchParams.get("origin") ?? "");
+      if (!callbackOrigin || !allowedOrigins.has(callbackOrigin)) {
+        return jsonResponse({ error: "Forbidden callback origin" }, 403);
+      }
+
+      const code = url.searchParams.get("code");
+      if (!code) {
+        return jsonResponse({ error: "Missing OAuth code" }, 400, getCorsHeaders(callbackOrigin));
+      }
+
+      if (!env.GITHUB_CLIENT_ID || !env.GITHUB_CLIENT_SECRET) {
+        return jsonResponse(
+          { error: "Missing GitHub OAuth credentials" },
+          500,
+          getCorsHeaders(callbackOrigin)
+        );
+      }
+
+      const tokenResponse = await fetch("https://github.com/login/oauth/access_token", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          client_id: env.GITHUB_CLIENT_ID,
+          client_secret: env.GITHUB_CLIENT_SECRET,
+          code
+        })
+      });
+
+      const tokenJson = (await tokenResponse.json()) as {
+        access_token?: string;
+        error?: string;
+        error_description?: string;
+      };
+
+      if (!tokenResponse.ok || !tokenJson.access_token) {
+        return jsonResponse(
+          {
+            error: tokenJson.error ?? "oauth_error",
+            message: tokenJson.error_description ?? "GitHub token exchange failed"
+          },
+          502,
+          getCorsHeaders(callbackOrigin)
+        );
+      }
+
+      return htmlResponse(
+        `<!doctype html>
+<html lang="en">
+  <body>
+    <script>
+      (function () {
+        const targetOrigin = ${JSON.stringify(callbackOrigin)};
+        const token = ${JSON.stringify(tokenJson.access_token)};
+        if (window.opener) {
+          window.opener.postMessage("authorization:github:success:" + token, targetOrigin);
+        }
+        window.close();
+      })();
+    </script>
+  </body>
+</html>`,
+        getCorsHeaders(callbackOrigin)
+      );
+    }
+
+    return jsonResponse({ error: "Not found" }, 404, getCorsHeaders(origin));
+  }
 };

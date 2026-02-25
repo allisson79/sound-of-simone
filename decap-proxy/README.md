@@ -24,10 +24,10 @@ npm install
 ### 3. Configure secrets
 
 ```bash
-npx wrangler secret put OAUTH_CLIENT_ID
+npx wrangler secret put GITHUB_CLIENT_ID
 # Paste your GitHub OAuth App Client ID
 
-npx wrangler secret put OAUTH_CLIENT_SECRET
+npx wrangler secret put GITHUB_CLIENT_SECRET
 # Paste your GitHub OAuth App Client Secret
 ```
 
@@ -78,8 +78,9 @@ The worker will be available at `http://localhost:8787`.
 
 ## Environment Variables
 
-- `OAUTH_CLIENT_ID` - GitHub OAuth App Client ID (secret)
-- `OAUTH_CLIENT_SECRET` - GitHub OAuth App Client Secret (secret)
+- `GITHUB_CLIENT_ID` - GitHub OAuth App Client ID (secret)
+- `GITHUB_CLIENT_SECRET` - GitHub OAuth App Client Secret (secret)
+- `ALLOWED_ORIGINS` - comma-separated allowlist for OAuth origin checks (non-secret var)
 
 ## Troubleshooting
 
@@ -115,7 +116,7 @@ These records are created and managed automatically by Cloudflare when you add a
 
 ### Other Issues
 
-**Error: "OAuth Client ID not configured"**
+**Error: "Missing GITHUB_CLIENT_ID"**
 - Verify secrets were set correctly: `npx wrangler secret list`
 - Redeploy the worker: `npm run deploy`
 

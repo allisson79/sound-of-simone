@@ -80,8 +80,8 @@ When deploying to production:
 
 - [ ] GitHub OAuth app configured with correct callback URL
 - [ ] Worker secrets properly set in Cloudflare Dashboard
-  - [ ] `OAUTH_CLIENT_ID`
-  - [ ] `OAUTH_CLIENT_SECRET`
+  - [ ] `GITHUB_CLIENT_ID`
+  - [ ] `GITHUB_CLIENT_SECRET`
 - [ ] Custom domains configured with SSL/TLS
 - [ ] Cloudflare Zero Trust configured (optional but recommended)
 - [ ] Repository access limited to authorized users
