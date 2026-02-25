@@ -1,5 +1,6 @@
 ---
 import { BOOKING_URL, BRAND_COLOR, DEV_MODE } from '../config/site';
+import WaveContactButton from './ui/WaveContactButton.astro';
 ---
 
 <section class="hero" aria-labelledby="hero-title" style={`--homepage-brand: ${BRAND_COLOR};`}>
@@ -28,10 +29,12 @@ import { BOOKING_URL, BRAND_COLOR, DEV_MODE } from '../config/site';
     </aside>
 
     <div class="hero-content">
-      {DEV_MODE && <p class="hero-preview">Forhåndsvisning</p>}
-      <p class="hero-kicker">Sound of Simone</p>
-      <h1 id="hero-title">Fysioterapi med fordypning i kvinnehelse</h1>
-      <p class="hero-lead">
+      {DEV_MODE && <p class="hero-preview" data-reveal style="--reveal-delay: 20ms;">Forhåndsvisning</p>}
+      <p class="hero-kicker" data-reveal style="--reveal-delay: 90ms;">Sound of Simone</p>
+      <h1 id="hero-title" data-reveal style="--reveal-delay: 150ms;">
+        Fysioterapi med fordypning i kvinnehelse
+      </h1>
+      <p class="hero-lead" data-reveal style="--reveal-delay: 220ms;">
         Skreddersydde behandlingsforløp for deg som ønsker helhetlig oppfølging, trygghet og ro i
         møte med kroppen din.
       </p>
@@ -44,6 +47,6 @@ import { BOOKING_URL, BRAND_COLOR, DEV_MODE } from '../config/site';
     <a class="hero-chip" href="#tjenester">Gynekologi</a>
     <a class="hero-chip" href="#tjenester">Ortopedi</a>
     <a class="hero-chip" href="#tjenester">Flere fagområder</a>
-    <a class="hero-chip hero-chip--cta" href={BOOKING_URL}>Bestill time</a>
+    <WaveContactButton href={BOOKING_URL} size="sm" class="floating-wave-button" label="Gå til kontakt" />
   </nav>
 </section>

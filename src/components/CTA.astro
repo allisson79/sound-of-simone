@@ -1,10 +1,14 @@
 ---
 import { BOOKING_URL, BRAND_COLOR } from '../config/site';
+import WaveContactButton from './ui/WaveContactButton.astro';
 ---
 
 <section class="cta" id="kontakt" style={`--homepage-brand: ${BRAND_COLOR};`}>
   <div class="container cta-inner">
-    <h2>Klar for å ta neste steg?</h2>
-    <a href={BOOKING_URL} class="hero-btn hero-btn--light">Bestill time nå</a>
+    <h2 data-reveal style="--reveal-delay: 120ms;">Klar for å ta neste steg?</h2>
+    <div class="cta-actions" data-reveal style="--reveal-delay: 180ms;">
+      <WaveContactButton href={BOOKING_URL} size="lg" class="cta-wave-button" label="Gå til kontakt" />
+      <a href={BOOKING_URL} class="hero-btn hero-btn--light">Kontakt</a>
+    </div>
   </div>
 </section>

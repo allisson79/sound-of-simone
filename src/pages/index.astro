@@ -1,13 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
+import StickyBrandBar from '../components/StickyBrandBar.astro';
 import Section from '../components/Section.astro';
 import Card from '../components/SimpleCard.astro';
 import CTA from '../components/CTA.astro';
 ---
 
 <Layout title="Sound of Simone">
-  <main class="home-page">
+  <StickyBrandBar />
+
+  <main class="home-page" id="top">
     <Hero />
 
     <Section
@@ -25,16 +28,16 @@ import CTA from '../components/CTA.astro';
     <section class="trust-strip" aria-label="Hvorfor velge Sound of Simone">
       <div class="container trust-grid">
         <article class="trust-item">
-          <h3>Trygg oppfølging</h3>
-          <p>Rolige rammer, tett dialog og behandlingsplan tilpasset deg.</p>
+          <h3 data-reveal>Trygg oppfølging</h3>
+          <p data-reveal>Rolige rammer, tett dialog og behandlingsplan tilpasset deg.</p>
         </article>
         <article class="trust-item">
-          <h3>Helhetlig vurdering</h3>
-          <p>Vi ser sammenhengen mellom symptomer, livssituasjon og mål.</p>
+          <h3 data-reveal>Helhetlig vurdering</h3>
+          <p data-reveal>Vi ser sammenhengen mellom symptomer, livssituasjon og mål.</p>
         </article>
         <article class="trust-item">
-          <h3>Tydelig neste steg</h3>
-          <p>Du får konkret retning på hva som bør gjøres videre.</p>
+          <h3 data-reveal>Tydelig neste steg</h3>
+          <p data-reveal>Du får konkret retning på hva som bør gjøres videre.</p>
         </article>
       </div>
     </section>
@@ -42,9 +45,9 @@ import CTA from '../components/CTA.astro';
     <section class="faq-teaser" id="faq" aria-labelledby="faq-tittel">
       <div class="container faq-layout">
         <div class="faq-copy">
-          <p class="faq-kicker">Vanlige spørsmål</p>
-          <h2 id="faq-tittel">Praktisk informasjon før første time</h2>
-          <p>
+          <p class="faq-kicker" data-reveal>Vanlige spørsmål</p>
+          <h2 id="faq-tittel" data-reveal>Praktisk informasjon før første time</h2>
+          <p data-reveal>
             Her kommer full FAQ etter hvert. I dev-versjonen bruker vi korte, nøytrale tekster for
             å teste struktur og lesbarhet.
           </p>

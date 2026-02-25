@@ -10,3 +10,4 @@ export { default as Card } from './Card.astro';
 export { default as Container } from './Container.astro';
 export { default as Logo } from './Logo.astro';
 export { default as WaveAnimation } from './WaveAnimation.astro';
+export { default as WaveContactButton } from './WaveContactButton.astro';
