@@ -1,9 +1,8 @@
 name: Deploy to Cloudflare Pages
 
 on:
-  push:
-    branches:
-      - main
+  # Pages production deploy is handled by Cloudflare native Git integration.
+  # Keep this workflow as manual fallback only.
   workflow_dispatch:
 
 jobs:
@@ -35,6 +34,6 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: sound-of-simone
+          projectName: shy-term-e0aa
           directory: dist
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
