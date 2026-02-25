@@ -1,6 +1,10 @@
-<section class="cta" id="kontakt">
+---
+import { BOOKING_URL, BRAND_COLOR } from '../config/site';
+---
+
+<section class="cta" id="kontakt" style={`--homepage-brand: ${BRAND_COLOR};`}>
   <div class="container cta-inner">
     <h2>Klar for å ta neste steg?</h2>
-    <a href="#" class="btn-light">Bestill time nå</a>
+    <a href={BOOKING_URL} class="hero-btn hero-btn--light">Bestill time nå</a>
   </div>
 </section>

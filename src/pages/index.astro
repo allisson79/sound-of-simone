@@ -21,5 +21,49 @@ import CTA from '../components/CTA.astro';
     </div>
   </Section>
 
+  <section class="trust-strip" aria-label="Hvorfor velge Sound of Simone">
+    <div class="container trust-grid">
+      <article class="trust-item">
+        <h3>Trygg oppfølging</h3>
+        <p>Rolige rammer, tett dialog og behandlingsplan tilpasset deg.</p>
+      </article>
+      <article class="trust-item">
+        <h3>Helhetlig vurdering</h3>
+        <p>Vi ser sammenhengen mellom symptomer, livssituasjon og mål.</p>
+      </article>
+      <article class="trust-item">
+        <h3>Tydelig neste steg</h3>
+        <p>Du får konkret retning på hva som bør gjøres videre.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="faq-teaser" id="faq" aria-labelledby="faq-tittel">
+    <div class="container faq-layout">
+      <div class="faq-copy">
+        <p class="faq-kicker">Vanlige spørsmål</p>
+        <h2 id="faq-tittel">Praktisk informasjon før første time</h2>
+        <p>
+          Her kommer full FAQ etter hvert. I dev-versjonen bruker vi korte, nøytrale tekster for
+          å teste struktur og lesbarhet.
+        </p>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>Trenger jeg henvisning?</summary>
+          <p>Dette avklares tydelig per tjeneste når innholdet ferdigstilles.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Hvor lang er en konsultasjon?</summary>
+          <p>Standard varighet og forløp publiseres når bookingflyten er endelig avklart.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Kan jeg bestille oppfølgingstime med en gang?</summary>
+          <p>Ja, i v1 styrer vi booking fra samme CTA-lenke for alle seksjoner.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
   <CTA />
 </Layout>

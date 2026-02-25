@@ -1,30 +1,37 @@
-<section class="hero">
-  <div class="hero-bg"></div>
+---
+import { BOOKING_URL, BRAND_COLOR, DEV_MODE } from '../config/site';
+---
 
-  <div class="container hero-content">
-    <p class="hero-kicker">Sound of Simone</p>
-    <h1>Fysioterapi med fordypning i kvinnehelse</h1>
-    <p class="hero-lead">
-      Skreddersydde behandlingsforløp for deg som ønsker helhetlig oppfølging, trygghet og ro
-      i møte med kroppen din.
-    </p>
-    <div class="hero-actions">
-      <a class="btn-primary" href="#kontakt">Bestill time</a>
-      <a class="btn-light" href="#tjenester">Se tjenester</a>
+<section class="hero" aria-labelledby="hero-title" style={`--homepage-brand: ${BRAND_COLOR};`}>
+  <div class="hero-bg" aria-hidden="true"></div>
+
+  <div class="container hero-layout">
+    <div class="hero-content">
+      {DEV_MODE && <p class="hero-preview">Forhåndsvisning</p>}
+      <p class="hero-kicker">Sound of Simone</p>
+      <h1 id="hero-title">Fysioterapi med fordypning i kvinnehelse</h1>
+      <p class="hero-lead">
+        Skreddersydde behandlingsforløp for deg som ønsker helhetlig oppfølging, trygghet og ro i
+        møte med kroppen din.
+      </p>
+      <div class="hero-actions">
+        <a class="hero-btn hero-btn--primary" href={BOOKING_URL}>Bestill time</a>
+        <a class="hero-btn hero-btn--light" href="#tjenester">Se tjenester</a>
+      </div>
     </div>
+
+    <aside class="hero-visual" aria-hidden="true">
+      <div class="placeholder-image placeholder-image--large"></div>
+      <div class="placeholder-image placeholder-image--small"></div>
+    </aside>
   </div>
 
-  <div class="floating-nav">
-    <div class="chip">Urologi</div>
-    <div class="chip">Fertilitet</div>
-    <div class="chip">Gynekologi</div>
-    <div class="chip">Ortopedi</div>
-    <div class="chip">Flere fagområder</div>
-
-    <div class="chip chip-cta">Bestill time</div>
-
-    <div class="menu-icon">
-      ☰
-    </div>
-  </div>
+  <nav class="floating-nav" aria-label="Fagområder">
+    <a class="hero-chip" href="#tjenester">Urologi</a>
+    <a class="hero-chip" href="#tjenester">Fertilitet</a>
+    <a class="hero-chip" href="#tjenester">Gynekologi</a>
+    <a class="hero-chip" href="#tjenester">Ortopedi</a>
+    <a class="hero-chip" href="#tjenester">Flere fagområder</a>
+    <a class="hero-chip hero-chip--cta" href={BOOKING_URL}>Bestill time</a>
+  </nav>
 </section>
