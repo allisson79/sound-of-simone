@@ -6,7 +6,7 @@
       "enabled": true,
       "variant": "standard",
       "order": 10,
-      "kicker": "Kunde Utkast",
+      "kicker": "Sound of Simone",
       "title": "En tydelig tjenesteopplevelse for dine kunder",
       "lead": "Bruk denne templaten til rask lansering med god struktur for innhold, design og konvertering.",
       "image": {
@@ -85,7 +85,7 @@
       "variant": "standard",
       "order": 40,
       "title": "Om oss",
-      "name": "Kunde Utkast",
+      "name": "Sound of Simone",
       "ingress": "Denne seksjonen er modulbasert og kan tilpasses per kunde direkte i CMS.",
       "primaryCtaLabel": "Bestill time",
       "roles": [
@@ -125,9 +125,9 @@
       "order": 60,
       "title": "Kontakt oss",
       "lead": "Ta kontakt for sporsmal, bestilling eller samarbeid.",
-      "email": "kontakt@kunde-utkast.no",
-      "phoneDisplay": "99 88 77 66",
-      "phoneLink": "99887766",
+      "email": "kontakt@sound-of-simone.no",
+      "phoneDisplay": "99 99 99 99",
+      "phoneLink": "99999999",
       "address": ""
     },
     {

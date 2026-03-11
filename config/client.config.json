@@ -3,17 +3,17 @@
   "brandName": "Sound of Simone",
   "repository": {
     "owner": "allisson79",
-    "name": "sound-of-simone",
-    "branch": "dev"
+    "name": "sound-of-simone-site",
+    "branch": "main"
   },
   "domains": {
-    "production": "soundofsimone.no",
+    "production": "pending-domain.example",
     "dev": "dev.sound-of-simone-dev.pages.dev",
     "cmsProxy": "decap.soundofsimone.no"
   },
   "cloudflare": {
     "pagesProjectDev": "sound-of-simone-dev",
-    "pagesBranchDev": "dev",
+    "pagesBranchDev": "main",
     "pagesProjectProd": "sound-of-simone-main",
     "pagesBranchProd": "main"
   },
