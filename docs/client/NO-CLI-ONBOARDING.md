@@ -17,6 +17,10 @@ This runbook lets you onboard clients without local terminal commands.
 - Cloudflare secrets are set in GitHub (prefer org-level):
   - `CLOUDFLARE_API_TOKEN`
   - `CLOUDFLARE_ACCOUNT_ID`
+- Required Cloudflare API token permissions:
+  - `Account -> Cloudflare Pages:Edit`
+  - `Account -> Workers Scripts:Edit`
+  - `Account -> Workers Routes:Edit` (needed when worker uses custom domain/routes)
 - Cloudflare Pages DEV project is created manually (semi-auto model) and matches expected name (`<client-id>-dev`) or values in generated config.
 - Shared OAuth worker stays active (set your shared proxy hostname, for example `decap.soundofsimone.no`).
 
