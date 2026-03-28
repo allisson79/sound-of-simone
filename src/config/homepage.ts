@@ -1,4 +1,5 @@
 import homeModulesData from '../data/page-modules/home.json';
+import { toSitePath } from './routes';
 import { siteSettings } from './site-settings';
 
 export type ModuleVariant = 'compact' | 'standard' | 'expanded';
@@ -305,7 +306,10 @@ export const homepageContent: HomepageContent = {
     women: {
       title: women?.title ?? 'Service 2',
       lead: women?.lead ?? '',
-      blocks: women?.blocks ?? [],
+      blocks: (women?.blocks ?? []).map((block) => ({
+        ...block,
+        ctaHref: toSitePath(block.ctaHref),
+      })),
     },
     waves: {
       title: waves?.title ?? 'Service 3',

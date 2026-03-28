@@ -3,6 +3,7 @@ import BottomPillMenu from '../components/BottomPillMenu.astro';
 import GlobalBrandRail from '../components/GlobalBrandRail.astro';
 import ScrollRevealScript from '../components/ScrollRevealScript.astro';
 import WaveContactDock from '../components/WaveContactDock.astro';
+import { isPreviewPath } from '../config/routes';
 import { siteSettings } from '../config/site-settings';
 import '../styles/design-tokens.css';
 import '../styles/global.css';
@@ -19,6 +20,7 @@ const resolvedTitle = title
   ? `${title} | ${siteSettings.seo.titleSuffix}`
   : siteSettings.seo.defaultTitle;
 const resolvedDescription = description ?? siteSettings.seo.description;
+const previewMode = isPreviewPath(Astro.url.pathname);
 ---
 
 <!doctype html>
@@ -29,6 +31,7 @@ const resolvedDescription = description ?? siteSettings.seo.description;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={resolvedDescription} />
+    {previewMode && <meta name="robots" content="noindex, nofollow" />}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

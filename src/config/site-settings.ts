@@ -1,4 +1,5 @@
-import siteSettingsData from '../data/site-settings.json';
+import rawSiteSettingsData from '../data/site-settings.json';
+import { toSitePath } from './routes';
 
 export interface NavItem {
   label: string;
@@ -65,4 +66,29 @@ export interface SiteSettings {
   };
 }
 
-export const siteSettings = siteSettingsData as SiteSettings;
+const siteSettingsData = rawSiteSettingsData as SiteSettings;
+
+export const siteSettings: SiteSettings = {
+  ...siteSettingsData,
+  navigation: {
+    ...siteSettingsData.navigation,
+    logoHomeHref: toSitePath(siteSettingsData.navigation.logoHomeHref),
+    bookingUrl: toSitePath(siteSettingsData.navigation.bookingUrl),
+    waveContactTarget: toSitePath(siteSettingsData.navigation.waveContactTarget),
+    bottomQuickNav: siteSettingsData.navigation.bottomQuickNav.map((item) => ({
+      ...item,
+      href: toSitePath(item.href),
+    })),
+    menuGroups: siteSettingsData.navigation.menuGroups.map((group) => ({
+      ...group,
+      items: group.items.map((item) => ({
+        ...item,
+        href: toSitePath(item.href),
+      })),
+    })),
+    servicesMenuLinks: siteSettingsData.navigation.servicesMenuLinks.map((item) => ({
+      ...item,
+      href: toSitePath(item.href),
+    })),
+  },
+};

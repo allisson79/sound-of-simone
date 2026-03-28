@@ -1,0 +1,70 @@
+---
+import { homepageContent } from '../config/homepage';
+import { SERVICES_URL } from '../config/site';
+import ServiceBrandLogo from '../components/ui/ServiceBrandLogo.astro';
+
+interface Props {
+  service: 'physio' | 'women' | 'waves';
+}
+
+const { service } = Astro.props;
+const content = homepageContent.services[service];
+---
+
+<main class="home-page" id="top">
+  <section class="services-showcase" aria-label={content.title}>
+    <div class="container services-showcase__stack">
+      {
+        service === 'physio' && (
+          <article class="services-showcase__card">
+            <ServiceBrandLogo variant="physio" class="services-showcase__brand" />
+            <p class="services-showcase__lead">{homepageContent.services.physio.lead}</p>
+
+            <div class="services-topics" aria-label="Temaer i Sound of Physio">
+              {homepageContent.services.physio.moreTopics.map((topic) => (
+                <details class="services-topic">
+                  <summary>{topic}</summary>
+                </details>
+              ))}
+            </div>
+
+            <a href={SERVICES_URL} class="hero-btn hero-btn--light">Tilbake til tjenester</a>
+          </article>
+        )
+      }
+
+      {
+        service === 'women' && (
+          <article class="services-showcase__card">
+            <ServiceBrandLogo variant="women" class="services-showcase__brand" />
+            <p class="services-showcase__lead">{homepageContent.services.women.lead}</p>
+
+            <div class="services-women-grid">
+              {homepageContent.services.women.blocks.map((block) => (
+                <article class="services-women-card">
+                  <h3>{block.title}</h3>
+                  <p>{block.body}</p>
+                  <a href={block.ctaHref} class="hero-btn hero-btn--primary">{block.ctaLabel}</a>
+                  {block.ctaPending && <p class="services-link-note">Lenke kommer</p>}
+                </article>
+              ))}
+            </div>
+
+            <a href={SERVICES_URL} class="hero-btn hero-btn--light">Tilbake til tjenester</a>
+          </article>
+        )
+      }
+
+      {
+        service === 'waves' && (
+          <article class="services-showcase__card services-showcase__card--waves">
+            <ServiceBrandLogo variant="waves" class="services-showcase__brand" />
+            <p class="services-showcase__lead">{homepageContent.services.waves.lead}</p>
+            <p class="services-launch-pill">{homepageContent.services.waves.launchLabel}</p>
+            <a href={SERVICES_URL} class="hero-btn hero-btn--light">Tilbake til tjenester</a>
+          </article>
+        )
+      }
+    </div>
+  </section>
+</main>

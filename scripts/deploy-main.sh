@@ -44,6 +44,14 @@ require_non_empty() {
   fi
 }
 
+resolve_wrangler() {
+  if [ -x "decap-proxy/node_modules/.bin/wrangler" ]; then
+    echo "decap-proxy/node_modules/.bin/wrangler"
+  else
+    echo "npx --yes wrangler"
+  fi
+}
+
 if [ ! -f "config/client.config.json" ]; then
   echo "Preflight FAIL: missing config/client.config.json" >&2
   exit 1
@@ -63,6 +71,7 @@ echo "Building site..."
 npm run build
 
 echo "Deploying to Cloudflare Pages production project (${PROJECT_NAME})..."
-npx wrangler pages deploy dist --project-name "$PROJECT_NAME" --branch "$DEPLOY_BRANCH"
+WRANGLER_CMD="$(resolve_wrangler)"
+eval "$WRANGLER_CMD" pages deploy dist --project-name "$PROJECT_NAME" --branch "$DEPLOY_BRANCH"
 
 echo "Production deploy completed."

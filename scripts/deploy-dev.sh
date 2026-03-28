@@ -44,6 +44,14 @@ require_non_empty() {
   fi
 }
 
+resolve_wrangler() {
+  if [ -x "decap-proxy/node_modules/.bin/wrangler" ]; then
+    echo "decap-proxy/node_modules/.bin/wrangler"
+  else
+    echo "npx --yes wrangler"
+  fi
+}
+
 verify_generated_admin_config() {
   local file="public/admin/config.yml"
   local expected_repo="$1"
@@ -91,6 +99,7 @@ npm run build
 verify_generated_admin_config "${REPO_OWNER}/${REPO_NAME}" "$CMS_BRANCH" "$CMS_SITE_ORIGIN" "$CMS_DISPLAY_ORIGIN"
 
 echo "Deploying to Cloudflare Pages DEV project (${PROJECT_NAME})..."
-npx wrangler pages deploy dist --project-name "$PROJECT_NAME" --branch "$DEPLOY_BRANCH"
+WRANGLER_CMD="$(resolve_wrangler)"
+eval "$WRANGLER_CMD" pages deploy dist --project-name "$PROJECT_NAME" --branch "$DEPLOY_BRANCH"
 
 echo "DEV deploy completed."

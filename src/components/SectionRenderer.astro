@@ -7,6 +7,7 @@ import ProofStrip from './ProofStrip.astro';
 import SocialFeedSection from './SocialFeedSection.astro';
 import type { HomepageModule, SocialFeedModule } from '../config/homepage';
 import { homepageContent } from '../config/homepage';
+import { PHYSIO_URL, WAVES_URL, WOMEN_URL } from '../config/site';
 
 interface Props {
   module: HomepageModule;
@@ -26,17 +27,17 @@ const { module } = Astro.props;
         <article class="services-overview__card">
           <h2>{homepageContent.services.physio.title}</h2>
           <p>{homepageContent.services.physio.lead}</p>
-          <a href="/tjenester/sound-of-physio">Les mer</a>
+          <a href={PHYSIO_URL}>Les mer</a>
         </article>
         <article class="services-overview__card">
           <h2>{homepageContent.services.women.title}</h2>
           <p>{homepageContent.services.women.lead}</p>
-          <a href="/tjenester/sound-of-women">Les mer</a>
+          <a href={WOMEN_URL}>Les mer</a>
         </article>
         <article class="services-overview__card">
           <h2>{homepageContent.services.waves.title}</h2>
           <p>{homepageContent.services.waves.lead}</p>
-          <a href="/tjenester/sound-of-waves">Les mer</a>
+          <a href={WAVES_URL}>Les mer</a>
         </article>
       </div>
     </section>

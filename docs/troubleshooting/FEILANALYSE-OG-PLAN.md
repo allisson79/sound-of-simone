@@ -1,6 +1,10 @@
 <<<<<<< ours
 <<<<<<< ours
 <<<<<<< ours
+<<<<<<< ours
+<<<<<<< ours
+=======
+>>>>>>> theirs
 # Feilanalyse og løsningsplan (Cloudflare Workers + Decap OAuth)
 
 ## Hvorfor denne versjonen
@@ -185,7 +189,10 @@ npm run deploy
 
 Start med Fase 1 umiddelbart, og lås først **eksakt statuskode + endpoint**.
 Det alene vil normalt kutte 80 % av søkeområdet i denne worker-arkitekturen.
+<<<<<<< ours
 =======
+=======
+>>>>>>> theirs
 =======
 >>>>>>> theirs
 =======
@@ -348,6 +355,11 @@ Tolkning:
 Hvis du vil, kan neste steg være at jeg følger denne planen som en operativ “incident-run” og dokumenterer hvert funn fortløpende til vi har bekreftet rotårsak og grønn flyt.
 <<<<<<< ours
 <<<<<<< ours
+<<<<<<< ours
+>>>>>>> theirs
+=======
+>>>>>>> theirs
+=======
 >>>>>>> theirs
 =======
 >>>>>>> theirs

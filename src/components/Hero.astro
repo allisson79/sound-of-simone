@@ -1,5 +1,5 @@
 ---
-import { BOOKING_URL, BRAND_COLOR, DEV_MODE } from '../config/site';
+import { BOOKING_URL, BRAND_COLOR, CONTACT_URL, DEV_MODE } from '../config/site';
 import { homepageContent } from '../config/homepage';
 import { siteSettings } from '../config/site-settings';
 import Logo from './ui/Logo.astro';
@@ -37,7 +37,7 @@ import Logo from './ui/Logo.astro';
         <a class="hero-btn hero-btn--primary" href={BOOKING_URL}>
           {homepageContent.hero.primaryCtaLabel}
         </a>
-        <a class="hero-btn hero-btn--light" href="/kontakt">{homepageContent.hero.secondaryCtaLabel}</a>
+        <a class="hero-btn hero-btn--light" href={CONTACT_URL}>{homepageContent.hero.secondaryCtaLabel}</a>
       </div>
     </div>
   </div>

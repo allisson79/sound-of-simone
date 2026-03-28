@@ -1,6 +1,22 @@
 import { siteSettings } from './site-settings';
+export {
+  ABOUT_MARKETING_URL,
+  ABOUT_URL,
+  BLOG_INDEX_URL,
+  BLOG_WELCOME_URL,
+  BOOKING_URL,
+  CONTACT_URL,
+  DESIGN_DEMO_URL,
+  PHYSIO_URL,
+  PRELAUNCH_PREVIEW_ENABLED,
+  SERVICES_URL,
+  SITE_HOME_HREF,
+  SITE_TREE_PREFIX,
+  toSitePath,
+  WAVES_URL,
+  WOMEN_URL,
+} from './routes';
 
-export const BOOKING_URL = siteSettings.navigation.bookingUrl;
 export const BRAND_COLOR = siteSettings.theme.tokens.brandColor;
 export const DEV_MODE = import.meta.env.DEV;
 export const LOGO_HOME_HREF = siteSettings.navigation.logoHomeHref;

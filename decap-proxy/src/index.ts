@@ -181,14 +181,22 @@ export default {
     const traceId = request.headers.get("cf-ray") ?? "unknown";
 
     try {
+<<<<<<< ours
       if (request.method !== "GET" && request.method !== "OPTIONS" && request.method !== "HEAD") {
+=======
+      if (request.method !== "GET" && request.method !== "OPTIONS") {
+>>>>>>> theirs
         return buildErrorResponse("Method not allowed", 405, origin, {
           traceId
         });
       }
 
       if (request.method === "OPTIONS") {
+<<<<<<< ours
         if (!isAllowedOrigin(origin, allowedOrigins, devOriginRegex)) {
+=======
+        if (!origin || !allowedOrigins.has(origin)) {
+>>>>>>> theirs
           return new Response("Forbidden", { status: 403 });
         }
 
@@ -199,6 +207,7 @@ export default {
       }
 
       if (url.pathname === "/health") {
+<<<<<<< ours
         if (request.method === "HEAD") {
           return new Response(null, {
             status: 200,
@@ -206,10 +215,13 @@ export default {
           });
         }
 
+=======
+>>>>>>> theirs
         return jsonResponse({ ok: true }, 200, getCorsHeaders(origin));
       }
 
       if (url.pathname === "/auth") {
+<<<<<<< ours
         if (!isAllowedOrigin(origin, allowedOrigins, devOriginRegex)) {
           return buildErrorResponse("Forbidden origin", 403, "", {
             traceId,
@@ -292,6 +304,41 @@ export default {
           });
         }
 
+=======
+        if (!origin || !allowedOrigins.has(origin)) {
+          return buildErrorResponse("Forbidden origin", 403, origin, { traceId });
+        }
+
+        if (!env.GITHUB_CLIENT_ID) {
+          return buildErrorResponse("Missing GITHUB_CLIENT_ID", 500, origin, { traceId });
+        }
+
+        const callbackUrl = new URL("/callback", url.origin);
+        callbackUrl.searchParams.set("origin", origin);
+
+        const githubAuthUrl = new URL("https://github.com/login/oauth/authorize");
+        githubAuthUrl.searchParams.set("client_id", env.GITHUB_CLIENT_ID);
+        githubAuthUrl.searchParams.set("redirect_uri", callbackUrl.toString());
+        githubAuthUrl.searchParams.set("scope", "repo");
+
+        return Response.redirect(githubAuthUrl.toString(), 302);
+      }
+
+      if (url.pathname === "/callback") {
+        const callbackOrigin = normalizeOrigin(url.searchParams.get("origin") ?? "");
+        if (!callbackOrigin || !allowedOrigins.has(callbackOrigin)) {
+          return buildErrorResponse("Forbidden callback origin", 403, callbackOrigin, { traceId });
+        }
+
+        const providerError = url.searchParams.get("error");
+        if (providerError) {
+          return buildErrorResponse("GitHub OAuth denied", 400, callbackOrigin, {
+            traceId,
+            providerError
+          });
+        }
+
+>>>>>>> theirs
         const code = url.searchParams.get("code");
         if (!code) {
           return buildErrorResponse("Missing OAuth code", 400, callbackOrigin, { traceId });
@@ -323,6 +370,10 @@ export default {
             message: error instanceof Error ? error.message : "unknown"
           });
         }
+<<<<<<< ours
+=======
+
+>>>>>>> theirs
         const tokenJson = (await tokenResponse.json()) as {
           access_token?: string;
           error?: string;
@@ -336,8 +387,11 @@ export default {
           });
         }
 
+<<<<<<< ours
         const postMessageOrigins = getPostMessageOrigins(callbackOrigin);
 
+=======
+>>>>>>> theirs
         return htmlResponse(
           `<!doctype html>
 <html lang="en">

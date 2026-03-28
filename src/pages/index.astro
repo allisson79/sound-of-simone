@@ -1,11 +1,152 @@
 ---
-import SectionRenderer from '../components/SectionRenderer.astro';
-import { homepageModules } from '../config/homepage';
-import Layout from '../layouts/Layout.astro';
+const title = 'Sound of Simone';
+const description = 'Noe spennende er på vei i din retning. Sound of Simone lanseres snart.';
 ---
 
-<Layout>
-  <main class="home-page" id="top">
-    {homepageModules.map((module) => <SectionRenderer module={module} />)}
-  </main>
-</Layout>
+<!doctype html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="canonical" href="https://soundofsimone.no/" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={title} />
+    <meta property="og:locale" content="nb_NO" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content="https://soundofsimone.no/" />
+    <meta property="og:image" content="https://soundofsimone.no/images/logo-wordmark.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://soundofsimone.no/images/logo-wordmark.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <main class="landing-shell">
+      <section class="landing-card" aria-labelledby="landing-title">
+        <img
+          class="landing-logo"
+          src="/images/logo-wordmark-transparent.svg"
+          alt="Sound of Simone"
+          width="560"
+          height="165"
+        />
+
+        <div class="landing-wave" aria-hidden="true">
+          <iframe src="/wave-simone.html?mode=animated" title="Dekorativ bølge" loading="eager"></iframe>
+        </div>
+
+        <div class="landing-copy">
+          <h1 id="landing-title">Noe spennende er på vei i din retning.</h1>
+          <p>Sound of Simone lanseres snart med en ny digital opplevelse.</p>
+        </div>
+
+        <a class="landing-contact" href="mailto:hei@soundofsimone.no">hei@soundofsimone.no</a>
+      </section>
+    </main>
+  </body>
+</html>
+
+<style>
+  :root {
+    --landing-bg: #ffffff;
+    --landing-brand: #411e25;
+    --landing-brand-soft: rgba(65, 30, 37, 0.14);
+    --landing-brand-strong: #2f1219;
+  }
+
+  html,
+  body {
+    margin: 0;
+    min-height: 100%;
+    background: radial-gradient(circle at top, #fffaf8 0%, var(--landing-bg) 48%);
+    font-family: 'Montserrat', sans-serif;
+    color: var(--landing-brand);
+  }
+
+  .landing-shell {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    box-sizing: border-box;
+  }
+
+  .landing-card {
+    width: min(640px, 100%);
+    display: grid;
+    justify-items: center;
+    gap: clamp(16px, 2.5vh, 24px);
+    text-align: center;
+  }
+
+  .landing-logo {
+    width: min(560px, 92vw);
+    height: auto;
+    display: block;
+  }
+
+  .landing-wave {
+    width: clamp(130px, 18vh, 190px);
+    height: clamp(130px, 18vh, 190px);
+    position: relative;
+  }
+
+  .landing-wave iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: transparent;
+    display: block;
+  }
+
+  .landing-copy {
+    display: grid;
+    gap: 10px;
+  }
+
+  .landing-copy h1 {
+    margin: 0;
+    font-size: clamp(1.2rem, 2.4vw, 1.72rem);
+    line-height: 1.25;
+    color: var(--landing-brand-strong);
+  }
+
+  .landing-copy p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .landing-contact {
+    color: var(--landing-brand);
+    text-decoration: none;
+    font-weight: 600;
+    border: 1px solid rgba(65, 30, 37, 0.22);
+    border-radius: 999px;
+    padding: 10px 16px;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 12px 32px rgba(65, 30, 37, 0.08);
+  }
+
+  .landing-contact:hover,
+  .landing-contact:focus-visible {
+    border-color: rgba(65, 30, 37, 0.45);
+    outline: none;
+  }
+
+  @media (max-width: 640px) {
+    .landing-shell {
+      padding: 20px;
+    }
+  }
+</style>
