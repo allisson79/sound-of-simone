@@ -19,8 +19,8 @@
   },
   "cms": {
     "publishMode": "simple",
-    "siteOrigin": "https://dev.sound-of-simone-dev.pages.dev",
-    "displayOrigin": "https://dev.sound-of-simone-dev.pages.dev",
+    "siteOrigin": "https://dev.sound-of-simone-dev.pages.dev/preview",
+    "displayOrigin": "https://dev.sound-of-simone-dev.pages.dev/preview",
     "mediaFolder": "public/images",
     "publicFolder": "/images"
   },

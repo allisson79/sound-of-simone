@@ -7,8 +7,8 @@ backend:
 
 publish_mode: simple
 
-site_url: https://dev.sound-of-simone-dev.pages.dev
-display_url: https://dev.sound-of-simone-dev.pages.dev
+site_url: https://dev.sound-of-simone-dev.pages.dev/preview
+display_url: https://dev.sound-of-simone-dev.pages.dev/preview
 
 media_folder: "public/images"
 public_folder: "/images"
