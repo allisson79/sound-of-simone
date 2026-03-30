@@ -1,9 +1,21 @@
 ---
+import SubpageShell from '../components/SubpageShell.astro';
 import BookingSkeleton from '../components/BookingSkeleton.astro';
-import CTA from '../components/CTA.astro';
+import { homepageContent } from '../config/homepage';
+import { bookingMedia } from '../config/service-media';
+import { CONTACT_URL } from '../config/site';
 ---
 
 <main class="home-page" id="top">
-  <BookingSkeleton />
-  <CTA />
+  <SubpageShell
+    id="booking"
+    eyebrow={homepageContent.bookingPage.heroEyebrow}
+    title={homepageContent.bookingPage.heroTitle}
+    lead={homepageContent.bookingPage.heroLead}
+    media={bookingMedia}
+    primaryActionHref={CONTACT_URL}
+    primaryActionLabel={homepageContent.bookingPage.heroPrimaryActionLabel}
+  >
+    <BookingSkeleton />
+  </SubpageShell>
 </main>

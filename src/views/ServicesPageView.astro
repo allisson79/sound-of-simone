@@ -1,45 +1,84 @@
 ---
+import SubpageShell from '../components/SubpageShell.astro';
 import { homepageContent } from '../config/homepage';
-import ServiceBrandLogo from '../components/ui/ServiceBrandLogo.astro';
+import { serviceMedia, serviceMeta } from '../config/service-media';
+import { BOOKING_URL, PHYSIO_URL, WAVE_EMBED_STATIC, WAVES_URL, WOMEN_URL } from '../config/site';
 ---
 
 <main class="home-page" id="top">
-  <section class="services-showcase" id="tjenester" aria-label="Tjenester">
-    <div class="container services-showcase__stack">
-      <article class="services-showcase__card" id="sound-of-physio">
-        <ServiceBrandLogo variant="physio" class="services-showcase__brand" />
-        <p class="services-showcase__lead">{homepageContent.services.physio.lead}</p>
-
-        <div class="services-topics" aria-label="Temaer i Sound of Physio">
-          {homepageContent.services.physio.moreTopics.map((topic) => (
-            <details class="services-topic">
-              <summary>{topic}</summary>
-            </details>
-          ))}
+  <SubpageShell
+    id="tjenester"
+    eyebrow={homepageContent.servicesOverview.eyebrow}
+    title={homepageContent.servicesOverview.title}
+    lead={homepageContent.servicesOverview.lead}
+    media={serviceMedia.women}
+    primaryActionHref={BOOKING_URL}
+    primaryActionLabel={homepageContent.servicesOverview.primaryActionLabel}
+  >
+    <div class="subpage-grid subpage-grid--thirds">
+      <article class="subpage-card subpage-card--service" id="sound-of-physio">
+        <p class="subpage-card__eyebrow">{serviceMeta.physio.eyebrow}</p>
+        <figure class="subpage-card__media">
+          <img
+            src={serviceMedia.physio.src}
+            alt={serviceMedia.physio.alt}
+            loading="lazy"
+            decoding="async"
+            style={serviceMedia.physio.objectPosition ? `object-position:${serviceMedia.physio.objectPosition};` : undefined}
+          />
+        </figure>
+        <h2 class="subpage-card__title">{homepageContent.services.physio.title}</h2>
+        <p class="subpage-card__body">{homepageContent.services.physio.lead}</p>
+        <div class="subpage-pill-list" aria-label="Temaer i Sound of Physio">
+          {homepageContent.services.physio.moreTopics.map((topic) => <span class="subpage-pill">{topic}</span>)}
+        </div>
+        <div class="subpage-card__actions">
+          <a href={PHYSIO_URL} class="hero-btn hero-btn--light">{serviceMeta.physio.linkLabel}</a>
         </div>
       </article>
 
-      <article class="services-showcase__card" id="sound-of-women">
-        <ServiceBrandLogo variant="women" class="services-showcase__brand" />
-        <p class="services-showcase__lead">{homepageContent.services.women.lead}</p>
-
-        <div class="services-women-grid">
-          {homepageContent.services.women.blocks.map((block) => (
-            <article class="services-women-card">
-              <h3>{block.title}</h3>
-              <p>{block.body}</p>
-              <a href={block.ctaHref} class="hero-btn hero-btn--primary">{block.ctaLabel}</a>
-              {block.ctaPending && <p class="services-link-note">Lenke kommer</p>}
-            </article>
-          ))}
+      <article class="subpage-card subpage-card--service" id="sound-of-women">
+        <p class="subpage-card__eyebrow">{serviceMeta.women.eyebrow}</p>
+        <figure class="subpage-card__media">
+          <img
+            src={serviceMedia.women.src}
+            alt={serviceMedia.women.alt}
+            loading="lazy"
+            decoding="async"
+            style={serviceMedia.women.objectPosition ? `object-position:${serviceMedia.women.objectPosition};` : undefined}
+          />
+        </figure>
+        <h2 class="subpage-card__title">{homepageContent.services.women.title}</h2>
+        <p class="subpage-card__body">{homepageContent.services.women.lead}</p>
+        <div class="subpage-list">
+          {homepageContent.services.women.blocks.map((block) => <p>{block.title}</p>)}
+        </div>
+        <div class="subpage-card__actions">
+          <a href={WOMEN_URL} class="hero-btn hero-btn--light">{serviceMeta.women.linkLabel}</a>
         </div>
       </article>
 
-      <article class="services-showcase__card services-showcase__card--waves" id="sound-of-waves">
-        <ServiceBrandLogo variant="waves" class="services-showcase__brand" />
-        <p class="services-showcase__lead">{homepageContent.services.waves.lead}</p>
+      <article class="subpage-card subpage-card--service" id="sound-of-waves">
+        <p class="subpage-card__eyebrow">{serviceMeta.waves.eyebrow}</p>
+        <figure class="subpage-card__media subpage-card__media--waves">
+          <img
+            src={serviceMedia.waves.src}
+            alt={serviceMedia.waves.alt}
+            loading="lazy"
+            decoding="async"
+            style={serviceMedia.waves.objectPosition ? `object-position:${serviceMedia.waves.objectPosition};` : undefined}
+          />
+          <div class="subpage-card__wave-badge" aria-hidden="true">
+            <iframe src={WAVE_EMBED_STATIC} title="Dekorativt bolgesymbol" loading="lazy"></iframe>
+          </div>
+        </figure>
+        <h2 class="subpage-card__title">{homepageContent.services.waves.title}</h2>
+        <p class="subpage-card__body">{homepageContent.services.waves.lead}</p>
         <p class="services-launch-pill">{homepageContent.services.waves.launchLabel}</p>
+        <div class="subpage-card__actions">
+          <a href={WAVES_URL} class="hero-btn hero-btn--light">{serviceMeta.waves.linkLabel}</a>
+        </div>
       </article>
     </div>
-  </section>
+  </SubpageShell>
 </main>

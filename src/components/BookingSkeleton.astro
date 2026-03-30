@@ -1,19 +1,16 @@
 ---
 import { homepageContent } from '../config/homepage';
-import { BOOKING_URL } from '../config/site';
 ---
 
-<section class="booking-skeleton" id="booking" aria-labelledby="booking-title">
-  <div class="container booking-layout">
-    <div class="booking-copy">
-      <p class="booking-kicker" data-reveal style="--reveal-delay: 60ms;">Booking</p>
-      <h2 id="booking-title" data-reveal style="--reveal-delay: 110ms;">{homepageContent.booking.title}</h2>
-      <p data-reveal style="--reveal-delay: 160ms;">{homepageContent.booking.lead}</p>
-    </div>
+<div class="subpage-grid subpage-grid--content-aside">
+  <article class="subpage-card">
+    <h2 class="subpage-card__title">{homepageContent.bookingPage.sectionTitle}</h2>
+    <p class="subpage-card__body">{homepageContent.bookingPage.lead}</p>
+    <p class="subpage-status">{homepageContent.bookingPage.statusLabel}</p>
+  </article>
 
-    <aside class="booking-panel" data-reveal style="--reveal-delay: 210ms;">
-      <p class="booking-status">{homepageContent.booking.statusLabel}</p>
-      <a href={BOOKING_URL} class="hero-btn hero-btn--primary">{homepageContent.booking.ctaLabel}</a>
-    </aside>
-  </div>
-</section>
+  <aside class="subpage-card subpage-card--support">
+    <p class="subpage-card__eyebrow">{homepageContent.bookingPage.nextStepEyebrow}</p>
+    <p class="subpage-card__body">{homepageContent.bookingPage.nextStepBody}</p>
+  </aside>
+</div>

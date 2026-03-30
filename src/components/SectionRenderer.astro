@@ -1,12 +1,14 @@
 ---
 import AboutSimone from './AboutSimone.astro';
 import CTA from './CTA.astro';
-import ContactInfo from './ContactInfo.astro';
 import Hero from './Hero.astro';
 import ProofStrip from './ProofStrip.astro';
 import SocialFeedSection from './SocialFeedSection.astro';
+import WaveAnimation from './ui/WaveAnimation.astro';
+import ServiceBrandLogo from './ui/ServiceBrandLogo.astro';
 import type { HomepageModule, SocialFeedModule } from '../config/homepage';
 import { homepageContent } from '../config/homepage';
+import { serviceMedia, serviceMeta } from '../config/service-media';
 import { PHYSIO_URL, WAVES_URL, WOMEN_URL } from '../config/site';
 
 interface Props {
@@ -25,19 +27,52 @@ const { module } = Astro.props;
     <section class="services-overview" aria-label="Tjenester">
       <div class="container services-overview__grid">
         <article class="services-overview__card">
+          <p class="services-overview__eyebrow">{serviceMeta.physio.eyebrow}</p>
+          <figure class="services-overview__media">
+            <img
+              src={serviceMedia.physio.src}
+              alt={serviceMedia.physio.alt}
+              loading="lazy"
+              decoding="async"
+              style={serviceMedia.physio.objectPosition ? `object-position:${serviceMedia.physio.objectPosition};` : undefined}
+            />
+          </figure>
           <h2>{homepageContent.services.physio.title}</h2>
           <p>{homepageContent.services.physio.lead}</p>
-          <a href={PHYSIO_URL}>Les mer</a>
+          <a href={PHYSIO_URL}>{serviceMeta.physio.linkLabel}</a>
         </article>
         <article class="services-overview__card">
+          <p class="services-overview__eyebrow">{serviceMeta.women.eyebrow}</p>
+          <figure class="services-overview__media">
+            <img
+              src={serviceMedia.women.src}
+              alt={serviceMedia.women.alt}
+              loading="lazy"
+              decoding="async"
+              style={serviceMedia.women.objectPosition ? `object-position:${serviceMedia.women.objectPosition};` : undefined}
+            />
+          </figure>
           <h2>{homepageContent.services.women.title}</h2>
           <p>{homepageContent.services.women.lead}</p>
-          <a href={WOMEN_URL}>Les mer</a>
+          <a href={WOMEN_URL}>{serviceMeta.women.linkLabel}</a>
         </article>
-        <article class="services-overview__card">
+        <article class="services-overview__card services-overview__card--teaser">
+          <p class="services-overview__eyebrow">{serviceMeta.waves.eyebrow}</p>
+          <figure class="services-overview__media services-overview__media--waves">
+            <img
+              src={serviceMedia.waves.src}
+              alt={serviceMedia.waves.alt}
+              loading="lazy"
+              decoding="async"
+              style={serviceMedia.waves.objectPosition ? `object-position:${serviceMedia.waves.objectPosition};` : undefined}
+            />
+            <div class="services-overview__wave-badge" aria-hidden="true">
+              <WaveAnimation size="sm" animated={false} />
+            </div>
+          </figure>
           <h2>{homepageContent.services.waves.title}</h2>
           <p>{homepageContent.services.waves.lead}</p>
-          <a href={WAVES_URL}>Les mer</a>
+          <a href={WAVES_URL}>{serviceMeta.waves.linkLabel}</a>
         </article>
       </div>
     </section>
@@ -60,8 +95,6 @@ const { module } = Astro.props;
     </section>
   )
 }
-
-{module.type === 'contact_block' && <ContactInfo />}
 
 {
   module.type === 'social_feed' && (
@@ -87,14 +120,67 @@ const { module } = Astro.props;
     border-radius: var(--border-radius-xl);
     padding: var(--space-6);
     background: var(--color-bg-primary);
+    display: grid;
+    gap: var(--space-4);
   }
 
   .services-overview__card h2 {
-    margin-top: 0;
+    margin: 0;
+  }
+
+  .services-overview__eyebrow {
+    margin: 0;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--homepage-brand);
+  }
+
+  .services-overview__card p {
+    margin: 0;
+    color: var(--homepage-copy-soft);
+    line-height: 1.7;
   }
 
   .services-overview__card a {
     font-weight: var(--font-weight-semibold);
+    width: fit-content;
+  }
+
+  .services-overview__media {
+    margin: 0;
+    display: grid;
+  }
+
+  .services-overview__media img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    display: block;
+    object-fit: cover;
+    border-radius: var(--border-radius-lg);
+  }
+
+  .services-overview__media--waves {
+    position: relative;
+  }
+
+  .services-overview__wave-badge {
+    position: absolute;
+    right: 0.85rem;
+    bottom: 0.85rem;
+    display: grid;
+    place-items: center;
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 999px;
+    background: rgb(254 250 247 / 92%);
+    border: 1px solid rgb(65 30 37 / 14%);
+    box-shadow: 0 14px 28px rgb(65 30 37 / 10%);
+  }
+
+  .services-overview__card--teaser {
+    align-content: start;
   }
 
   .about-gallery {

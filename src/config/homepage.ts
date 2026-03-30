@@ -1,4 +1,8 @@
 import homeModulesData from '../data/page-modules/home.json';
+import homeCopyData from '../data/editor/home-copy.json';
+import servicesCopyData from '../data/editor/services-copy.json';
+import bookingCopyData from '../data/editor/booking-copy.json';
+import contactCopyData from '../data/editor/contact-copy.json';
 import { toSitePath } from './routes';
 import { siteSettings } from './site-settings';
 
@@ -137,6 +141,106 @@ interface HomeModulesData {
   modules: HomepageModule[];
 }
 
+interface HomeCopyData {
+  hero: {
+    kicker?: string;
+    title: string;
+    lead: string;
+    primaryCtaLabel: string;
+  };
+  proofItems: Array<{
+    id: string;
+    label: string;
+    value: string;
+  }>;
+  aboutSimone: {
+    title: string;
+    name: string;
+    ingress: string;
+    roles: string[];
+    journey: string[];
+    education: string[];
+    courses: string[];
+  };
+  ctaBand: {
+    title: string;
+    primaryLabel: string;
+  };
+}
+
+interface ServicesCopyData {
+  overview: {
+    eyebrow: string;
+    title: string;
+    lead: string;
+    primaryActionLabel: string;
+  };
+  physio: {
+    title: string;
+    lead: string;
+    moreTopics: string[];
+    detailLead: string;
+    detailTitle: string;
+    supportEyebrow: string;
+    supportBody: string;
+    primaryActionLabel: string;
+  };
+  women: {
+    title: string;
+    lead: string;
+    blocks: Array<{
+      title: string;
+      body: string;
+      ctaLabel: string;
+    }>;
+    detailLead: string;
+    detailTitle: string;
+    supportEyebrow: string;
+    supportBody: string;
+    primaryActionLabel: string;
+  };
+  waves: {
+    title: string;
+    lead: string;
+    launchLabel: string;
+    detailLead: string;
+    detailTitle: string;
+    supportEyebrow: string;
+    supportBody: string;
+    primaryActionLabel: string;
+  };
+}
+
+interface BookingCopyData {
+  hero: {
+    eyebrow: string;
+    title: string;
+    lead: string;
+    primaryActionLabel: string;
+  };
+  content: {
+    sectionTitle: string;
+    lead: string;
+    statusLabel: string;
+    nextStepEyebrow: string;
+    nextStepBody: string;
+  };
+}
+
+interface ContactCopyData {
+  hero: {
+    eyebrow: string;
+    title: string;
+    lead: string;
+    primaryActionLabel: string;
+  };
+  content: {
+    directTitle: string;
+    supportEyebrow: string;
+    supportBody: string;
+  };
+}
+
 export interface HomepageContent {
   bottomQuickNav: HomepageQuickNavItem[];
   menuGroups: HomepageMenuGroup[];
@@ -205,6 +309,55 @@ export interface HomepageContent {
       launchLabel: string;
     };
   };
+  servicesOverview: {
+    eyebrow: string;
+    title: string;
+    lead: string;
+    primaryActionLabel: string;
+  };
+  servicePages: {
+    physio: {
+      detailLead: string;
+      detailTitle: string;
+      supportEyebrow: string;
+      supportBody: string;
+      primaryActionLabel: string;
+    };
+    women: {
+      detailLead: string;
+      detailTitle: string;
+      supportEyebrow: string;
+      supportBody: string;
+      primaryActionLabel: string;
+    };
+    waves: {
+      detailLead: string;
+      detailTitle: string;
+      supportEyebrow: string;
+      supportBody: string;
+      primaryActionLabel: string;
+    };
+  };
+  bookingPage: {
+    heroEyebrow: string;
+    heroTitle: string;
+    heroLead: string;
+    heroPrimaryActionLabel: string;
+    sectionTitle: string;
+    lead: string;
+    statusLabel: string;
+    nextStepEyebrow: string;
+    nextStepBody: string;
+  };
+  contactPage: {
+    heroEyebrow: string;
+    heroTitle: string;
+    heroLead: string;
+    heroPrimaryActionLabel: string;
+    directTitle: string;
+    supportEyebrow: string;
+    supportBody: string;
+  };
   ctaBand: {
     title: string;
     primaryLabel: string;
@@ -246,6 +399,10 @@ const serviceCards = serviceModule?.cards ?? [];
 const physio = getServiceCard(serviceCards, 'physio') ?? serviceCards[0];
 const women = getServiceCard(serviceCards, 'women') ?? serviceCards[1];
 const waves = getServiceCard(serviceCards, 'waves') ?? serviceCards[2];
+const homeCopy = homeCopyData as HomeCopyData;
+const servicesCopy = servicesCopyData as ServicesCopyData;
+const bookingCopy = bookingCopyData as BookingCopyData;
+const contactCopy = contactCopyData as ContactCopyData;
 const resolvedContactEmail = contactModule?.email ?? siteSettings.contact.email;
 const resolvedContactPhoneDisplay = contactModule?.phoneDisplay ?? siteSettings.contact.phoneDisplay;
 const resolvedContactPhoneLink = contactModule?.phoneLink ?? siteSettings.contact.phoneLink;
@@ -260,18 +417,25 @@ export const homepageContent: HomepageContent = {
   bottomQuickNav: siteSettings.navigation.bottomQuickNav,
   menuGroups: siteSettings.navigation.menuGroups,
   hero: {
-    kicker: heroModule?.kicker,
-    title: heroModule?.title ?? siteSettings.brand.name,
-    lead: heroModule?.lead ?? siteSettings.seo.description,
+    kicker: homeCopy.hero.kicker ?? heroModule?.kicker,
+    title: homeCopy.hero.title || heroModule?.title || siteSettings.brand.name,
+    lead: homeCopy.hero.lead || heroModule?.lead || siteSettings.seo.description,
     image: {
       src: heroModule?.image.src ?? '/images/simone-hero-portrait.jpg',
       webpSrc: heroModule?.image.webpSrc ?? '/images/simone-hero-portrait.webp',
       alt: heroModule?.image.alt ?? siteSettings.brand.name,
     },
-    primaryCtaLabel: heroModule?.primaryCtaLabel ?? siteSettings.booking.ctaLabel,
+    primaryCtaLabel: homeCopy.hero.primaryCtaLabel || heroModule?.primaryCtaLabel || siteSettings.booking.ctaLabel,
     secondaryCtaLabel: heroModule?.secondaryCtaLabel ?? 'Kontakt',
   },
-  proofItems: proofModule?.items ?? [],
+  proofItems: (proofModule?.items ?? []).map((item, index) => {
+    const copyItem = homeCopy.proofItems[index];
+    return {
+      ...item,
+      label: copyItem?.label || item.label,
+      value: copyItem?.value || item.value,
+    };
+  }),
   booking: siteSettings.booking,
   contact: {
     title: contactModule?.title ?? `Kontakt ${siteSettings.brand.name}`,
@@ -282,44 +446,96 @@ export const homepageContent: HomepageContent = {
     address: resolvedContactAddress,
   },
   aboutSimone: {
-    title: richTextModule?.title ?? 'Om oss',
-    name: richTextModule?.name ?? siteSettings.brand.name,
-    ingress: richTextModule?.ingress ?? siteSettings.seo.description,
-    roles: richTextModule?.roles ?? [],
+    title: homeCopy.aboutSimone.title || richTextModule?.title || 'Om oss',
+    name: homeCopy.aboutSimone.name || richTextModule?.name || siteSettings.brand.name,
+    ingress: homeCopy.aboutSimone.ingress || richTextModule?.ingress || siteSettings.seo.description,
+    roles: homeCopy.aboutSimone.roles?.length ? homeCopy.aboutSimone.roles : richTextModule?.roles ?? [],
     primaryCtaLabel: richTextModule?.primaryCtaLabel ?? siteSettings.booking.ctaLabel,
     contact: {
       email: resolvedContactEmail,
       phoneDisplay: resolvedContactPhoneDisplay,
       phoneLink: resolvedContactPhoneLink,
     },
-    journey: richTextModule?.journey ?? [],
-    education: richTextModule?.education ?? [],
-    courses: richTextModule?.courses ?? [],
+    journey: homeCopy.aboutSimone.journey?.length ? homeCopy.aboutSimone.journey : richTextModule?.journey ?? [],
+    education: homeCopy.aboutSimone.education?.length ? homeCopy.aboutSimone.education : richTextModule?.education ?? [],
+    courses: homeCopy.aboutSimone.courses?.length ? homeCopy.aboutSimone.courses : richTextModule?.courses ?? [],
     gallery: galleryModule?.items ?? [],
   },
   services: {
     physio: {
-      title: physio?.title ?? 'Service 1',
-      lead: physio?.lead ?? '',
-      moreTopics: physio?.moreTopics ?? [],
+      title: servicesCopy.physio.title || physio?.title || 'Service 1',
+      lead: servicesCopy.physio.lead || physio?.lead || '',
+      moreTopics: servicesCopy.physio.moreTopics?.length ? servicesCopy.physio.moreTopics : physio?.moreTopics ?? [],
     },
     women: {
-      title: women?.title ?? 'Service 2',
-      lead: women?.lead ?? '',
-      blocks: (women?.blocks ?? []).map((block) => ({
+      title: servicesCopy.women.title || women?.title || 'Service 2',
+      lead: servicesCopy.women.lead || women?.lead || '',
+      blocks: (women?.blocks ?? []).map((block, index) => ({
         ...block,
+        title: servicesCopy.women.blocks?.[index]?.title || block.title,
+        body: servicesCopy.women.blocks?.[index]?.body || block.body,
+        ctaLabel: servicesCopy.women.blocks?.[index]?.ctaLabel || block.ctaLabel,
         ctaHref: toSitePath(block.ctaHref),
       })),
     },
     waves: {
-      title: waves?.title ?? 'Service 3',
-      lead: waves?.lead ?? '',
-      launchLabel: waves?.launchLabel ?? '',
+      title: servicesCopy.waves.title || waves?.title || 'Service 3',
+      lead: servicesCopy.waves.lead || waves?.lead || '',
+      launchLabel: servicesCopy.waves.launchLabel || waves?.launchLabel || '',
     },
   },
+  servicesOverview: {
+    eyebrow: servicesCopy.overview.eyebrow || 'Tjenester',
+    title: servicesCopy.overview.title || 'Tjenester',
+    lead: servicesCopy.overview.lead || '',
+    primaryActionLabel: servicesCopy.overview.primaryActionLabel || siteSettings.booking.ctaLabel,
+  },
+  servicePages: {
+    physio: {
+      detailLead: servicesCopy.physio.detailLead || '',
+      detailTitle: servicesCopy.physio.detailTitle || 'Hva jeg hjelper deg med',
+      supportEyebrow: servicesCopy.physio.supportEyebrow || 'Neste steg',
+      supportBody: servicesCopy.physio.supportBody || '',
+      primaryActionLabel: servicesCopy.physio.primaryActionLabel || siteSettings.booking.ctaLabel,
+    },
+    women: {
+      detailLead: servicesCopy.women.detailLead || '',
+      detailTitle: servicesCopy.women.detailTitle || 'Hvordan jeg kan bidra',
+      supportEyebrow: servicesCopy.women.supportEyebrow || 'Kontakt',
+      supportBody: servicesCopy.women.supportBody || '',
+      primaryActionLabel: servicesCopy.women.primaryActionLabel || 'Ta kontakt',
+    },
+    waves: {
+      detailLead: servicesCopy.waves.detailLead || '',
+      detailTitle: servicesCopy.waves.detailTitle || 'Et nytt spor i utvikling',
+      supportEyebrow: servicesCopy.waves.supportEyebrow || 'Folg med',
+      supportBody: servicesCopy.waves.supportBody || '',
+      primaryActionLabel: servicesCopy.waves.primaryActionLabel || 'Ta kontakt',
+    },
+  },
+  bookingPage: {
+    heroEyebrow: bookingCopy.hero.eyebrow || 'Bestill time',
+    heroTitle: bookingCopy.hero.title || siteSettings.booking.title,
+    heroLead: bookingCopy.hero.lead || siteSettings.booking.lead,
+    heroPrimaryActionLabel: bookingCopy.hero.primaryActionLabel || siteSettings.booking.ctaLabel,
+    sectionTitle: bookingCopy.content.sectionTitle || 'Slik fungerer booking akkurat na',
+    lead: bookingCopy.content.lead || siteSettings.booking.lead,
+    statusLabel: bookingCopy.content.statusLabel || siteSettings.booking.statusLabel,
+    nextStepEyebrow: bookingCopy.content.nextStepEyebrow || 'Neste steg',
+    nextStepBody: bookingCopy.content.nextStepBody || '',
+  },
+  contactPage: {
+    heroEyebrow: contactCopy.hero.eyebrow || 'Kontakt',
+    heroTitle: contactCopy.hero.title || `Kontakt ${siteSettings.brand.name}`,
+    heroLead: contactCopy.hero.lead || 'Ta kontakt for foresporsel, vurdering eller booking.',
+    heroPrimaryActionLabel: contactCopy.hero.primaryActionLabel || 'Send e-post',
+    directTitle: contactCopy.content.directTitle || 'Direkte kontakt',
+    supportEyebrow: contactCopy.content.supportEyebrow || 'Henvendelser',
+    supportBody: contactCopy.content.supportBody || '',
+  },
   ctaBand: {
-    title: ctaBandModule?.title ?? 'Klar for neste steg?',
-    primaryLabel: ctaBandModule?.primaryLabel ?? siteSettings.booking.ctaLabel,
+    title: homeCopy.ctaBand.title || ctaBandModule?.title || 'Klar for neste steg?',
+    primaryLabel: homeCopy.ctaBand.primaryLabel || ctaBandModule?.primaryLabel || siteSettings.booking.ctaLabel,
     secondaryLabel: ctaBandModule?.secondaryLabel ?? 'Kontakt',
   },
   socialFeed: {

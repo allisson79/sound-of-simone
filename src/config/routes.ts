@@ -1,5 +1,6 @@
 const PREVIEW_PREFIX = '/preview';
 const RESERVED_PUBLIC_PREFIXES = ['/admin'];
+const ABOUT_SECTION_ID = 'om-simone';
 
 function normalizePathname(pathname: string): string {
   if (!pathname || pathname === '/') return '/';
@@ -51,14 +52,10 @@ export function isPreviewPath(pathname: string): boolean {
 }
 
 export const SITE_HOME_HREF = toSitePath('/');
-export const ABOUT_URL = toSitePath('/om');
-export const ABOUT_MARKETING_URL = toSitePath('/about');
+export const ABOUT_URL = `${SITE_HOME_HREF}#${ABOUT_SECTION_ID}`;
 export const SERVICES_URL = toSitePath('/tjenester');
 export const CONTACT_URL = toSitePath('/kontakt');
 export const BOOKING_URL = toSitePath('/booking');
-export const BLOG_INDEX_URL = toSitePath('/blog');
-export const BLOG_WELCOME_URL = toSitePath('/blog/welcome');
 export const PHYSIO_URL = toSitePath('/tjenester/sound-of-physio');
 export const WOMEN_URL = toSitePath('/tjenester/sound-of-women');
 export const WAVES_URL = toSitePath('/tjenester/sound-of-waves');
-export const DESIGN_DEMO_URL = toSitePath('/design-demo');

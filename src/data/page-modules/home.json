@@ -6,37 +6,118 @@
       "enabled": true,
       "variant": "standard",
       "order": 10,
-      "kicker": "Kunde Utkast",
-      "title": "En tydelig tjenesteopplevelse for dine kunder",
-      "lead": "Bruk denne templaten til rask lansering med god struktur for innhold, design og konvertering.",
+      "kicker": "Sound of Simone",
+      "title": "Trygg fysioterapi og tydelig fagformidling innen kvinnehelse",
+      "lead": "Jeg hjelper kvinner, fagmiljoer og virksomheter med fysioterapi, foredrag og konkret oppfolging innen kvinnehelse.",
       "image": {
-        "src": "/images/simone-hero-portrait.jpg",
-        "webpSrc": "/images/simone-hero-portrait.webp",
-        "alt": "Hero-bilde"
+        "src": "/images/simone-hero-green-coat.jpg",
+        "webpSrc": "",
+        "alt": "Simone i gronn kappe utenfor en murbygning"
       },
       "primaryCtaLabel": "Bestill time",
       "secondaryCtaLabel": "Kontakt"
+    },
+    {
+      "id": "rich-about",
+      "type": "rich_text",
+      "enabled": true,
+      "variant": "expanded",
+      "order": 20,
+      "title": "Om Simone",
+      "name": "Simone Anzjøn Holbø",
+      "ingress": "Jeg har jobbet med kvinnehelsefysioterapi i 15 ar, med spisskompetanse pa bekkenbunn, bekken og mage, og et sterkt onske om a gi trygg, tydelig og konkret oppfolging.",
+      "primaryCtaLabel": "Bestill time",
+      "roles": [
+        "Fysioterapeut spesialisert pa kvinnehelse",
+        "Grunder",
+        "Foredragsholder",
+        "Forfatter",
+        "Gruppeinstruktor",
+        "Mamma til Bari og Bella"
+      ],
+      "journey": [
+        "Det hele startet pa fysioterapistudiet, da jeg oppdaget hvor lite vi faktisk kunne om kvinnehelse. En sa viktig oppgave kan man ikke overlate til hvem som helst, og pa dette tidspunktet var forskningen naermest ikke-eksisterende.",
+        "I 2011 etablerte vi derfor drommestedet for kvinnehelse, House of Femme, Norges forste og storste tverrfaglige klinikk og fullskala treningssenter for kvinner. I 2018 ga vi ut boken Frisk graviditet, en bestselger som ogsa er utgitt pa tysk.",
+        "Som eier og grunder er arbeidsoppgavene mange, men det jeg setter aller storst pris pa, er a utvikle behandlings- og treningsprosedyrer med kvinnehelse i fokus. For meg er det dypt meningsfullt a hjelpe kvinner a oppdage hvor fantastiske de faktisk er.",
+        "Etter hvert som virksomheten vokste, endret ogsa min rolle seg. Jeg er stolt over det vi bygget, men kjente samtidig et behov for a komme tettere pa faget, menneskene og det som springer direkte ut fra meg.",
+        "Mine to nydelige barn har vaert en sentral del av min reise i kvinnehelseuniverset. Gjennom dem ser jeg hvor avgjorende det er at vi bygger en trygg relasjon til egen kropp fra starten av.",
+        "Med en trygg grunnmur bygger jeg na videre pa mine premisser. Hvis du onsker det samme, er du varmt velkommen."
+      ],
+      "education": [
+        "Fysioterapeut, HIST (2010)",
+        "Idrett- og bevegelsesvitenskap (2007)"
+      ],
+      "courses": [
+        "Den kompliserte bekkenbunnen",
+        "Inkontinens og dysfunksjon i bekkenbunnen",
+        "Veier til intimitet, naerhet og seksualitet etter seksuelle overgrep (2025)",
+        "Et klinisk blikk pa bekkenrelaterte plager",
+        "Kvinnehelsekonferansen 2022, 2023, 2024, 2025 og 2026",
+        "Fysioterapi i svangerskap- og barselomsorgen",
+        "Nordic Women's Health Congress: Pelvis, diastasis and exercises",
+        "Bekkenrelaterte plager 1 og 2"
+      ]
+    },
+    {
+      "id": "gallery-about",
+      "type": "gallery",
+      "enabled": true,
+      "variant": "expanded",
+      "order": 30,
+      "items": [
+        {
+          "src": "/images/simone-hero-green-coat.jpg",
+          "alt": "Simone smiler utendors i gronn kappe",
+          "caption": "Portrett av Simone utendors.",
+          "kind": "photo"
+        },
+        {
+          "src": "/images/simone-about-portrait-book.jpg",
+          "alt": "Simone star med bok i et lyst rom",
+          "caption": "Simone som fagperson og forfatter.",
+          "kind": "photo"
+        },
+        {
+          "src": "/images/simone-service-studio-standing.jpg",
+          "alt": "Simone star i studio med treningsutstyr",
+          "caption": "Simone i studio.",
+          "kind": "photo"
+        },
+        {
+          "src": "/images/simone-service-ballet-prep.jpg",
+          "alt": "Simone gjor seg klar til trening i studio",
+          "caption": "Simone i bevegelse.",
+          "kind": "photo"
+        }
+      ]
     },
     {
       "id": "proof-main",
       "type": "proof_strip",
       "enabled": true,
       "variant": "standard",
-      "order": 20,
+      "order": 40,
       "items": [
         {
           "id": "proof-1",
-          "label": "Faglig ramme",
-          "value": "Dokumentert metodikk og tydelig leveranse",
+          "label": "15 ar i kvinnehelse",
+          "value": "Klinisk erfaring, fagutvikling og undervisning siden 2010",
           "verified": true,
-          "sourceNote": "Template baseline"
+          "sourceNote": "Simone-profil"
         },
         {
           "id": "proof-2",
-          "label": "Tilgjengelighet",
-          "value": "Direkte kontakt via e-post og telefon",
+          "label": "Fysioterapi og foredrag",
+          "value": "Jeg jobber bade en til en, i kursrommet og ute hos fagmiljoer og virksomheter",
           "verified": true,
-          "sourceNote": "Template baseline"
+          "sourceNote": "Simone-profil"
+        },
+        {
+          "id": "proof-3",
+          "label": "Trygg metodikk",
+          "value": "Konkret vurdering, tydelig plan og tilpasset progresjon",
+          "verified": true,
+          "sourceNote": "Simone-profil"
         }
       ]
     },
@@ -45,26 +126,44 @@
       "type": "service_cards",
       "enabled": true,
       "variant": "standard",
-      "order": 30,
+      "order": 50,
       "cards": [
         {
           "id": "physio",
-          "title": "Service A",
-          "lead": "Tjenester presentert som modulaere kort med tydelige CTA-er.",
+          "title": "Sound of Physio",
+          "lead": "Jeg tilbyr fysioterapi for bekkenbunn, bekken, mage, svangerskap og overgangsfaser, med behandling bade fysisk ved Saksvik-klinikken og online.",
           "moreTopics": [
-            "Tema 1",
-            "Tema 2"
+            "Bekkenbunn",
+            "Bekken",
+            "Mage",
+            "Graviditet og smabarnstid",
+            "Perimenopause og overgangsalder",
+            "Pris"
           ]
         },
         {
           "id": "women",
-          "title": "Service B",
-          "lead": "Tjenester presentert som modulaere kort med tydelige CTA-er.",
+          "title": "Sound of Women",
+          "lead": "Jeg holder foredrag, bidrar med faglig innhold og samarbeider med virksomheter som vil ta kvinnehelse pa alvor.",
           "blocks": [
             {
-              "title": "Eksempelblokk",
-              "body": "Bytt ut med kundeinnhold i CMS.",
-              "ctaLabel": "Kontakt",
+              "title": "Foredrag",
+              "body": "Jeg holder foredrag om kvinnehelse for klinikker, fagmiljoer, bedrifter og arrangementer som trenger tydelig og anvendelig formidling.",
+              "ctaLabel": "Ta kontakt",
+              "ctaHref": "/kontakt",
+              "ctaPending": false
+            },
+            {
+              "title": "Samarbeid",
+              "body": "Jeg samarbeider med konsepter og aktorer som Core & Floor og Hemmelig, der kvinnehelse skal omsettes til konkrete kurs, ressurser og gode opplevelser.",
+              "ctaLabel": "La oss snakkes",
+              "ctaHref": "/kontakt",
+              "ctaPending": false
+            },
+            {
+              "title": "Faglig bistand",
+              "body": "Jeg bidrar gjerne med innhold, faglige vurderinger og opplegg tilpasset deres organisasjon, enten det gjelder bedrifter, forbund eller foreninger.",
+              "ctaLabel": "Ta kontakt",
               "ctaHref": "/kontakt",
               "ctaPending": false
             }
@@ -72,48 +171,9 @@
         },
         {
           "id": "waves",
-          "title": "Service C",
-          "lead": "Tjenester presentert som modulaere kort med tydelige CTA-er.",
-          "launchLabel": "Kommer snart"
-        }
-      ]
-    },
-    {
-      "id": "rich-about",
-      "type": "rich_text",
-      "enabled": true,
-      "variant": "standard",
-      "order": 40,
-      "title": "Om oss",
-      "name": "Kunde Utkast",
-      "ingress": "Denne seksjonen er modulbasert og kan tilpasses per kunde direkte i CMS.",
-      "primaryCtaLabel": "Bestill time",
-      "roles": [
-        "Fagperson",
-        "Radgiver"
-      ],
-      "journey": [
-        "Dette er starttekst for kundehistorie. Oppdateres i CMS."
-      ],
-      "education": [
-        "Utdanning"
-      ],
-      "courses": [
-        "Kurs"
-      ]
-    },
-    {
-      "id": "gallery-about",
-      "type": "gallery",
-      "enabled": true,
-      "variant": "standard",
-      "order": 50,
-      "items": [
-        {
-          "src": "/images/om-workshop-circle.jpg",
-          "alt": "Galleri bilde 1",
-          "caption": "Bildetekst 1",
-          "kind": "photo"
+          "title": "Sound of Waves",
+          "lead": "Sound of Waves er fortsatt under utvikling. Inntil videre lar jeg bolgesymbolet gi et lite forvarsel om det som kommer.",
+          "launchLabel": "Under utvikling"
         }
       ]
     },
@@ -123,11 +183,11 @@
       "enabled": true,
       "variant": "standard",
       "order": 60,
-      "title": "Kontakt oss",
-      "lead": "Ta kontakt for sporsmal, bestilling eller samarbeid.",
-      "email": "kontakt@kunde-utkast.no",
-      "phoneDisplay": "99 88 77 66",
-      "phoneLink": "99887766",
+      "title": "Kontakt Simone",
+      "lead": "Ta kontakt for vurdering, booking eller samarbeid. Du far raskt svar pa e-post eller telefon.",
+      "email": "hei@soundofsimone.no",
+      "phoneDisplay": "911 70 100",
+      "phoneLink": "91170100",
       "address": ""
     },
     {

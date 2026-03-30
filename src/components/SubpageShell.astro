@@ -1,0 +1,96 @@
+---
+import { DEV_MODE, BRAND_COLOR } from '../config/site';
+import { siteSettings } from '../config/site-settings';
+import Logo from './ui/Logo.astro';
+
+interface MediaConfig {
+  src: string;
+  alt: string;
+  objectPosition?: string;
+}
+
+interface Props {
+  id?: string;
+  eyebrow: string;
+  title: string;
+  lead?: string;
+  media?: MediaConfig;
+  headingTag?: 'h1' | 'h2';
+  primaryActionHref?: string;
+  primaryActionLabel?: string;
+}
+
+const {
+  id,
+  eyebrow,
+  title,
+  lead,
+  media,
+  headingTag = 'h1',
+  primaryActionHref,
+  primaryActionLabel,
+} = Astro.props;
+const titleId = `${id ?? 'subpage'}-title`;
+const HeadingTag = headingTag;
+const hasMediaSlot = Astro.slots.has('media');
+const hasActions = Boolean(primaryActionHref && primaryActionLabel) || Astro.slots.has('actions');
+const hasMedia = Boolean(media) || hasMediaSlot;
+---
+
+<section class="hero hero--subpage" id={id} aria-labelledby={titleId} style={`--homepage-brand: ${BRAND_COLOR};`}>
+  {
+    hasMedia && (
+      <div class="hero-media hero-media--subpage">
+        {
+          media ? (
+            <img
+              src={media.src}
+              alt={media.alt}
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+              style={media.objectPosition ? `object-position:${media.objectPosition};` : undefined}
+            />
+          ) : (
+            <slot name="media" />
+          )
+        }
+      </div>
+    )
+  }
+  <div class="hero-bg hero-bg--subpage" aria-hidden="true"></div>
+
+  <div class="hero-layout hero-layout--subpage">
+    <div class="hero-content hero-content--subpage" data-reveal style="--reveal-delay: 90ms;">
+      {DEV_MODE && <p class="hero-preview" data-reveal style="--reveal-delay: 20ms;">Forhandsvisning</p>}
+      <div class="hero-brand-mark" data-reveal style="--reveal-delay: 120ms;" aria-hidden="true">
+        <Logo size="base" color={BRAND_COLOR} ariaLabel={siteSettings.brand.logoAriaLabel} />
+      </div>
+      <p class="hero-kicker" data-reveal style="--reveal-delay: 145ms;">{eyebrow}</p>
+      <HeadingTag id={titleId} data-reveal style="--reveal-delay: 170ms;">
+        {title}
+      </HeadingTag>
+      {lead && <p class="hero-lead" data-reveal style="--reveal-delay: 220ms;">{lead}</p>}
+      {
+        hasActions && (
+          <div class="hero-actions" data-reveal style="--reveal-delay: 260ms;">
+            {primaryActionHref && primaryActionLabel && (
+              <a class="hero-btn hero-btn--primary" href={primaryActionHref}>
+                {primaryActionLabel}
+              </a>
+            )}
+            <slot name="actions" />
+          </div>
+        )
+      }
+    </div>
+  </div>
+</section>
+
+<section class="subpage-shell" aria-labelledby={titleId}>
+  <div class="container subpage-shell__stack">
+    <div class="subpage-shell__content">
+      <slot />
+    </div>
+  </div>
+</section>

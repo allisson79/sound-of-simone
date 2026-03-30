@@ -1,0 +1,64 @@
+{
+  "hero": {
+    "kicker": "Sound of Simone",
+    "title": "Trygg fysioterapi og tydelig fagformidling innen kvinnehelse",
+    "lead": "Jeg hjelper kvinner, fagmiljoer og virksomheter med fysioterapi, foredrag og konkret oppfolging innen kvinnehelse.",
+    "primaryCtaLabel": "Bestill time"
+  },
+  "proofItems": [
+    {
+      "id": "proof-1",
+      "label": "15 ar i kvinnehelse",
+      "value": "Klinisk erfaring, fagutvikling og undervisning siden 2010"
+    },
+    {
+      "id": "proof-2",
+      "label": "Fysioterapi og foredrag",
+      "value": "Jeg jobber bade en til en, i kursrommet og ute hos fagmiljoer og virksomheter"
+    },
+    {
+      "id": "proof-3",
+      "label": "Trygg metodikk",
+      "value": "Konkret vurdering, tydelig plan og tilpasset progresjon"
+    }
+  ],
+  "aboutSimone": {
+    "title": "Om Simone",
+    "name": "Simone Anzjon Holbo",
+    "ingress": "Jeg har jobbet med kvinnehelsefysioterapi i 15 ar, med spisskompetanse pa bekkenbunn, bekken og mage, og et sterkt onske om a gi trygg, tydelig og konkret oppfolging.",
+    "roles": [
+      "Fysioterapeut spesialisert pa kvinnehelse",
+      "Grunder",
+      "Foredragsholder",
+      "Forfatter",
+      "Gruppeinstruktor",
+      "Mamma til Bari og Bella"
+    ],
+    "journey": [
+      "Det hele startet pa fysioterapistudiet, da jeg oppdaget hvor lite vi faktisk kunne om kvinnehelse. En sa viktig oppgave kan man ikke overlate til hvem som helst, og pa dette tidspunktet var forskningen naermest ikke-eksisterende.",
+      "I 2011 etablerte vi derfor drommestedet for kvinnehelse, House of Femme, Norges forste og storste tverrfaglige klinikk og fullskala treningssenter for kvinner. I 2018 ga vi ut boken Frisk graviditet, en bestselger som ogsa er utgitt pa tysk.",
+      "Som eier og grunder er arbeidsoppgavene mange, men det jeg setter aller storst pris pa, er a utvikle behandlings- og treningsprosedyrer med kvinnehelse i fokus. For meg er det dypt meningsfullt a hjelpe kvinner a oppdage hvor fantastiske de faktisk er.",
+      "Etter hvert som virksomheten vokste, endret ogsa min rolle seg. Jeg er stolt over det vi bygget, men kjente samtidig et behov for a komme tettere pa faget, menneskene og det som springer direkte ut fra meg.",
+      "Mine to nydelige barn har vaert en sentral del av min reise i kvinnehelseuniverset. Gjennom dem ser jeg hvor avgjorende det er at vi bygger en trygg relasjon til egen kropp fra starten av.",
+      "Med en trygg grunnmur bygger jeg na videre pa mine premisser. Hvis du onsker det samme, er du varmt velkommen."
+    ],
+    "education": [
+      "Fysioterapeut, HIST (2010)",
+      "Idrett- og bevegelsesvitenskap (2007)"
+    ],
+    "courses": [
+      "Den kompliserte bekkenbunnen",
+      "Inkontinens og dysfunksjon i bekkenbunnen",
+      "Veier til intimitet, naerhet og seksualitet etter seksuelle overgrep (2025)",
+      "Et klinisk blikk pa bekkenrelaterte plager",
+      "Kvinnehelsekonferansen 2022, 2023, 2024, 2025 og 2026",
+      "Fysioterapi i svangerskap- og barselomsorgen",
+      "Nordic Women's Health Congress: Pelvis, diastasis and exercises",
+      "Bekkenrelaterte plager 1 og 2"
+    ]
+  },
+  "ctaBand": {
+    "title": "Klar for neste steg?",
+    "primaryLabel": "Bestill time"
+  }
+}

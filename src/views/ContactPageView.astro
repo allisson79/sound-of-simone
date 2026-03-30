@@ -1,7 +1,20 @@
 ---
+import SubpageShell from '../components/SubpageShell.astro';
 import ContactInfo from '../components/ContactInfo.astro';
+import { homepageContent } from '../config/homepage';
+import { serviceMedia } from '../config/service-media';
 ---
 
 <main class="home-page" id="top">
-  <ContactInfo />
+  <SubpageShell
+    id="kontakt"
+    eyebrow={homepageContent.contactPage.heroEyebrow}
+    title={homepageContent.contactPage.heroTitle}
+    lead={homepageContent.contactPage.heroLead}
+    media={serviceMedia.waves}
+    primaryActionHref={`mailto:${homepageContent.contact.email}`}
+    primaryActionLabel={homepageContent.contactPage.heroPrimaryActionLabel}
+  >
+    <ContactInfo />
+  </SubpageShell>
 </main>

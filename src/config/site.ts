@@ -1,12 +1,8 @@
 import { siteSettings } from './site-settings';
 export {
-  ABOUT_MARKETING_URL,
   ABOUT_URL,
-  BLOG_INDEX_URL,
-  BLOG_WELCOME_URL,
   BOOKING_URL,
   CONTACT_URL,
-  DESIGN_DEMO_URL,
   PHYSIO_URL,
   PRELAUNCH_PREVIEW_ENABLED,
   SERVICES_URL,

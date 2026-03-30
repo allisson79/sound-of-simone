@@ -1,5 +1,5 @@
 ---
-import { BOOKING_URL, BRAND_COLOR, CONTACT_URL, DEV_MODE } from '../config/site';
+import { BOOKING_URL, BRAND_COLOR, DEV_MODE } from '../config/site';
 import { homepageContent } from '../config/homepage';
 import { siteSettings } from '../config/site-settings';
 import Logo from './ui/Logo.astro';
@@ -8,7 +8,7 @@ import Logo from './ui/Logo.astro';
 <section class="hero" aria-labelledby="hero-title" style={`--homepage-brand: ${BRAND_COLOR};`}>
   <div class="hero-media">
     <picture>
-      <source srcset={homepageContent.hero.image.webpSrc} type="image/webp" />
+      {homepageContent.hero.image.webpSrc && <source srcset={homepageContent.hero.image.webpSrc} type="image/webp" />}
       <img
         src={homepageContent.hero.image.src}
         alt={homepageContent.hero.image.alt}
@@ -26,6 +26,11 @@ import Logo from './ui/Logo.astro';
       <div class="hero-brand-mark" data-reveal style="--reveal-delay: 120ms;" aria-hidden="true">
         <Logo size="base" color={BRAND_COLOR} ariaLabel={siteSettings.brand.logoAriaLabel} />
       </div>
+      {homepageContent.hero.kicker && (
+        <p class="hero-kicker" data-reveal style="--reveal-delay: 145ms;">
+          {homepageContent.hero.kicker}
+        </p>
+      )}
       <h1 id="hero-title" data-reveal style="--reveal-delay: 170ms;">
         {homepageContent.hero.title}
       </h1>
@@ -37,7 +42,6 @@ import Logo from './ui/Logo.astro';
         <a class="hero-btn hero-btn--primary" href={BOOKING_URL}>
           {homepageContent.hero.primaryCtaLabel}
         </a>
-        <a class="hero-btn hero-btn--light" href={CONTACT_URL}>{homepageContent.hero.secondaryCtaLabel}</a>
       </div>
     </div>
   </div>

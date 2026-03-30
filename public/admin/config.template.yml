@@ -14,365 +14,168 @@ media_folder: "__CMS_MEDIA_FOLDER__"
 public_folder: "__CMS_PUBLIC_FOLDER__"
 
 collections:
-  - name: "site_settings"
-    label: "Site Settings"
+  - name: "simone_text"
+    label: "Tekstinnhold"
     files:
-      - label: "Global Settings"
-        name: "global_settings"
-        file: "src/data/site-settings.json"
+      - label: "Forside og Om Simone"
+        name: "home_copy"
+        file: "src/data/editor/home-copy.json"
         format: "json"
         fields:
-          - label: "Brand"
-            name: "brand"
+          - label: "Hero"
+            name: "hero"
             widget: "object"
             fields:
-              - { label: "Name", name: "name", widget: "string" }
-              - { label: "Tagline", name: "tagline", widget: "string" }
-              - { label: "Logo aria-label", name: "logoAriaLabel", widget: "string" }
-              - { label: "Home link aria-label", name: "homeLinkAriaLabel", widget: "string" }
+              - { label: "Eyebrow", name: "kicker", widget: "string", required: false }
+              - { label: "Tittel", name: "title", widget: "string" }
+              - { label: "Ingress", name: "lead", widget: "text" }
+              - { label: "Primarknapp", name: "primaryCtaLabel", widget: "string" }
 
-          - label: "SEO"
-            name: "seo"
-            widget: "object"
+          - label: "Proof-stripe"
+            name: "proofItems"
+            widget: "list"
+            summary: "{{fields.label}}"
             fields:
-              - { label: "Default title", name: "defaultTitle", widget: "string" }
-              - { label: "Title suffix", name: "titleSuffix", widget: "string" }
-              - { label: "Description", name: "description", widget: "text" }
+              - { label: "ID", name: "id", widget: "string" }
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "Verdi", name: "value", widget: "text" }
 
-          - label: "Localization"
-            name: "localization"
+          - label: "Om Simone"
+            name: "aboutSimone"
             widget: "object"
             fields:
-              - label: "Mode"
-                name: "mode"
-                widget: "select"
-                options: ["single", "bilingual"]
-              - { label: "Default locale", name: "defaultLocale", widget: "string" }
-              - label: "Locales"
-                name: "locales"
+              - { label: "Seksjonstittel", name: "title", widget: "string" }
+              - { label: "Navn", name: "name", widget: "string" }
+              - { label: "Ingress", name: "ingress", widget: "text" }
+              - label: "Roller"
+                name: "roles"
                 widget: "list"
-                field: { label: "Locale", name: "locale", widget: "string" }
-
-          - label: "Theme"
-            name: "theme"
-            widget: "object"
-            fields:
-              - { label: "Preset", name: "preset", widget: "string" }
-              - label: "Tokens"
-                name: "tokens"
-                widget: "object"
-                fields:
-                  - { label: "Brand color", name: "brandColor", widget: "string" }
-
-          - label: "Navigation"
-            name: "navigation"
-            widget: "object"
-            fields:
-              - { label: "Logo home link", name: "logoHomeHref", widget: "string" }
-              - { label: "Booking URL", name: "bookingUrl", widget: "string" }
-              - { label: "Wave contact target", name: "waveContactTarget", widget: "string" }
-              - { label: "Wave embed src", name: "waveEmbedSrc", widget: "string" }
-              - { label: "Wave embed animated", name: "waveEmbedAnimated", widget: "string" }
-              - { label: "Wave embed static", name: "waveEmbedStatic", widget: "string" }
-              - label: "Bottom quick nav"
-                name: "bottomQuickNav"
+                field: { label: "Rolle", name: "role", widget: "string" }
+              - label: "Min reise"
+                name: "journey"
                 widget: "list"
-                summary: "{{fields.label}} -> {{fields.href}}"
-                fields:
-                  - { label: "Label", name: "label", widget: "string" }
-                  - { label: "Href", name: "href", widget: "string" }
-                  - label: "Kind"
-                    name: "kind"
-                    widget: "select"
-                    options: ["link", "menu"]
-              - label: "Menu groups"
-                name: "menuGroups"
+                field: { label: "Avsnitt", name: "paragraph", widget: "text" }
+              - label: "Utdanning"
+                name: "education"
+                widget: "list"
+                field: { label: "Punkt", name: "item", widget: "string" }
+              - label: "Kurs"
+                name: "courses"
+                widget: "list"
+                field: { label: "Punkt", name: "item", widget: "string" }
+
+          - label: "Avsluttende CTA"
+            name: "ctaBand"
+            widget: "object"
+            fields:
+              - { label: "Tittel", name: "title", widget: "string" }
+              - { label: "Knappetekst", name: "primaryLabel", widget: "string" }
+
+      - label: "Tjenester"
+        name: "services_copy"
+        file: "src/data/editor/services-copy.json"
+        format: "json"
+        fields:
+          - label: "Tjenesteoversikt"
+            name: "overview"
+            widget: "object"
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Tittel", name: "title", widget: "string" }
+              - { label: "Ingress", name: "lead", widget: "text" }
+              - { label: "Primarknapp", name: "primaryActionLabel", widget: "string" }
+
+          - label: "Sound of Physio"
+            name: "physio"
+            widget: "object"
+            fields:
+              - { label: "Tittel", name: "title", widget: "string" }
+              - { label: "Kort tekst", name: "lead", widget: "text" }
+              - label: "Temaer"
+                name: "moreTopics"
+                widget: "list"
+                field: { label: "Tema", name: "topic", widget: "string" }
+              - { label: "Detaljside ingress", name: "detailLead", widget: "text" }
+              - { label: "Detaljside seksjonstittel", name: "detailTitle", widget: "string" }
+              - { label: "Stotte-eyebrow", name: "supportEyebrow", widget: "string" }
+              - { label: "Stottetekst", name: "supportBody", widget: "text" }
+              - { label: "Primarknapp", name: "primaryActionLabel", widget: "string" }
+
+          - label: "Sound of Women"
+            name: "women"
+            widget: "object"
+            fields:
+              - { label: "Tittel", name: "title", widget: "string" }
+              - { label: "Kort tekst", name: "lead", widget: "text" }
+              - label: "Blokker"
+                name: "blocks"
                 widget: "list"
                 summary: "{{fields.title}}"
                 fields:
-                  - { label: "Title", name: "title", widget: "string" }
-                  - label: "Items"
-                    name: "items"
-                    widget: "list"
-                    summary: "{{fields.label}} -> {{fields.href}}"
-                    fields:
-                      - { label: "Label", name: "label", widget: "string" }
-                      - { label: "Href", name: "href", widget: "string" }
-              - label: "Services menu links"
-                name: "servicesMenuLinks"
-                widget: "list"
-                summary: "{{fields.label}} -> {{fields.href}}"
-                fields:
-                  - { label: "Label", name: "label", widget: "string" }
-                  - { label: "Href", name: "href", widget: "string" }
+                  - { label: "Tittel", name: "title", widget: "string" }
+                  - { label: "Tekst", name: "body", widget: "text" }
+                  - { label: "Knappeetikett", name: "ctaLabel", widget: "string" }
+              - { label: "Detaljside ingress", name: "detailLead", widget: "text" }
+              - { label: "Detaljside seksjonstittel", name: "detailTitle", widget: "string" }
+              - { label: "Stotte-eyebrow", name: "supportEyebrow", widget: "string" }
+              - { label: "Stottetekst", name: "supportBody", widget: "text" }
+              - { label: "Primarknapp", name: "primaryActionLabel", widget: "string" }
 
-          - label: "Contact"
-            name: "contact"
+          - label: "Sound of Waves"
+            name: "waves"
             widget: "object"
             fields:
-              - { label: "Email", name: "email", widget: "string" }
-              - { label: "Phone display", name: "phoneDisplay", widget: "string" }
-              - { label: "Phone link", name: "phoneLink", widget: "string" }
-              - { label: "Address", name: "address", widget: "string", required: false }
+              - { label: "Tittel", name: "title", widget: "string" }
+              - { label: "Kort tekst", name: "lead", widget: "text" }
+              - { label: "Statusetikett", name: "launchLabel", widget: "string" }
+              - { label: "Detaljside ingress", name: "detailLead", widget: "text" }
+              - { label: "Detaljside seksjonstittel", name: "detailTitle", widget: "string" }
+              - { label: "Stotte-eyebrow", name: "supportEyebrow", widget: "string" }
+              - { label: "Stottetekst", name: "supportBody", widget: "text" }
+              - { label: "Primarknapp", name: "primaryActionLabel", widget: "string" }
 
-          - label: "Booking"
-            name: "booking"
-            widget: "object"
-            fields:
-              - { label: "Title", name: "title", widget: "string" }
-              - { label: "Lead", name: "lead", widget: "text" }
-              - { label: "Status label", name: "statusLabel", widget: "string" }
-              - { label: "CTA label", name: "ctaLabel", widget: "string" }
-
-          - label: "Footer"
-            name: "footer"
-            widget: "object"
-            fields:
-              - { label: "Legal text", name: "legalText", widget: "string" }
-
-  - name: "page_modules"
-    label: "Page Modules"
-    files:
-      - label: "Homepage"
-        name: "home_modules"
-        file: "src/data/page-modules/home.json"
+      - label: "Bestill time"
+        name: "booking_copy"
+        file: "src/data/editor/booking-copy.json"
         format: "json"
         fields:
-          - label: "Modules"
-            name: "modules"
-            widget: "list"
-            summary: "{{fields.type}} - {{fields.id}}"
-            types:
-              - label: "Hero"
-                name: "hero"
-                widget: "object"
-                fields:
-                  - { label: "Module ID", name: "id", widget: "string" }
-                  - { label: "Type", name: "type", widget: "hidden", default: "hero" }
-                  - { label: "Enabled", name: "enabled", widget: "boolean", default: true }
-                  - label: "Variant"
-                    name: "variant"
-                    widget: "select"
-                    options: ["compact", "standard", "expanded"]
-                    default: "standard"
-                  - { label: "Order", name: "order", widget: "number", value_type: "int" }
-                  - { label: "Kicker", name: "kicker", widget: "string", required: false }
-                  - { label: "Title", name: "title", widget: "string" }
-                  - { label: "Lead", name: "lead", widget: "text" }
-                  - label: "Image"
-                    name: "image"
-                    widget: "object"
-                    fields:
-                      - { label: "Image", name: "src", widget: "image", allow_multiple: false }
-                      - { label: "WebP path", name: "webpSrc", widget: "string" }
-                      - { label: "Alt", name: "alt", widget: "string" }
-                  - { label: "Primary CTA", name: "primaryCtaLabel", widget: "string" }
-                  - { label: "Secondary CTA", name: "secondaryCtaLabel", widget: "string" }
+          - label: "Hero"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Tittel", name: "title", widget: "string" }
+              - { label: "Ingress", name: "lead", widget: "text" }
+              - { label: "Primarknapp", name: "primaryActionLabel", widget: "string" }
 
-              - label: "Proof Strip"
-                name: "proof_strip"
-                widget: "object"
-                fields:
-                  - { label: "Module ID", name: "id", widget: "string" }
-                  - { label: "Type", name: "type", widget: "hidden", default: "proof_strip" }
-                  - { label: "Enabled", name: "enabled", widget: "boolean", default: true }
-                  - label: "Variant"
-                    name: "variant"
-                    widget: "select"
-                    options: ["compact", "standard", "expanded"]
-                    default: "standard"
-                  - { label: "Order", name: "order", widget: "number", value_type: "int" }
-                  - label: "Items"
-                    name: "items"
-                    widget: "list"
-                    summary: "{{fields.label}}"
-                    fields:
-                      - { label: "ID", name: "id", widget: "string" }
-                      - { label: "Label", name: "label", widget: "string" }
-                      - { label: "Value", name: "value", widget: "string" }
-                      - { label: "Verified", name: "verified", widget: "boolean", default: true }
-                      - { label: "Source note", name: "sourceNote", widget: "string" }
+          - label: "Innhold"
+            name: "content"
+            widget: "object"
+            fields:
+              - { label: "Seksjonstittel", name: "sectionTitle", widget: "string" }
+              - { label: "Forklaring", name: "lead", widget: "text" }
+              - { label: "Statusetikett", name: "statusLabel", widget: "string" }
+              - { label: "Neste steg-eyebrow", name: "nextStepEyebrow", widget: "string" }
+              - { label: "Neste steg-tekst", name: "nextStepBody", widget: "text" }
 
-              - label: "Service Cards"
-                name: "service_cards"
-                widget: "object"
-                fields:
-                  - { label: "Module ID", name: "id", widget: "string" }
-                  - { label: "Type", name: "type", widget: "hidden", default: "service_cards" }
-                  - { label: "Enabled", name: "enabled", widget: "boolean", default: true }
-                  - label: "Variant"
-                    name: "variant"
-                    widget: "select"
-                    options: ["compact", "standard", "expanded"]
-                    default: "standard"
-                  - { label: "Order", name: "order", widget: "number", value_type: "int" }
-                  - label: "Cards"
-                    name: "cards"
-                    widget: "list"
-                    summary: "{{fields.title}}"
-                    fields:
-                      - { label: "Card ID", name: "id", widget: "string" }
-                      - { label: "Title", name: "title", widget: "string" }
-                      - { label: "Lead", name: "lead", widget: "text" }
-                      - label: "More topics"
-                        name: "moreTopics"
-                        widget: "list"
-                        required: false
-                        field: { label: "Topic", name: "topic", widget: "string" }
-                      - label: "Blocks"
-                        name: "blocks"
-                        widget: "list"
-                        required: false
-                        summary: "{{fields.title}}"
-                        fields:
-                          - { label: "Title", name: "title", widget: "string" }
-                          - { label: "Body", name: "body", widget: "text" }
-                          - { label: "CTA label", name: "ctaLabel", widget: "string" }
-                          - { label: "CTA href", name: "ctaHref", widget: "string" }
-                          - { label: "CTA pending", name: "ctaPending", widget: "boolean", default: false }
-                      - { label: "Launch label", name: "launchLabel", widget: "string", required: false }
-
-              - label: "Rich Text"
-                name: "rich_text"
-                widget: "object"
-                fields:
-                  - { label: "Module ID", name: "id", widget: "string" }
-                  - { label: "Type", name: "type", widget: "hidden", default: "rich_text" }
-                  - { label: "Enabled", name: "enabled", widget: "boolean", default: true }
-                  - label: "Variant"
-                    name: "variant"
-                    widget: "select"
-                    options: ["compact", "standard", "expanded"]
-                    default: "standard"
-                  - { label: "Order", name: "order", widget: "number", value_type: "int" }
-                  - { label: "Title", name: "title", widget: "string" }
-                  - { label: "Name", name: "name", widget: "string" }
-                  - { label: "Ingress", name: "ingress", widget: "text" }
-                  - { label: "Primary CTA", name: "primaryCtaLabel", widget: "string" }
-                  - label: "Roles"
-                    name: "roles"
-                    widget: "list"
-                    field: { label: "Role", name: "role", widget: "string" }
-                  - label: "Journey"
-                    name: "journey"
-                    widget: "list"
-                    field: { label: "Paragraph", name: "paragraph", widget: "text" }
-                  - label: "Education"
-                    name: "education"
-                    widget: "list"
-                    field: { label: "Item", name: "item", widget: "string" }
-                  - label: "Courses"
-                    name: "courses"
-                    widget: "list"
-                    field: { label: "Item", name: "item", widget: "string" }
-
-              - label: "Gallery"
-                name: "gallery"
-                widget: "object"
-                fields:
-                  - { label: "Module ID", name: "id", widget: "string" }
-                  - { label: "Type", name: "type", widget: "hidden", default: "gallery" }
-                  - { label: "Enabled", name: "enabled", widget: "boolean", default: true }
-                  - label: "Variant"
-                    name: "variant"
-                    widget: "select"
-                    options: ["compact", "standard", "expanded"]
-                    default: "standard"
-                  - { label: "Order", name: "order", widget: "number", value_type: "int" }
-                  - label: "Items"
-                    name: "items"
-                    widget: "list"
-                    summary: "{{fields.caption}}"
-                    fields:
-                      - { label: "Image", name: "src", widget: "image", allow_multiple: false }
-                      - { label: "Alt", name: "alt", widget: "string" }
-                      - { label: "Caption", name: "caption", widget: "string" }
-                      - label: "Kind"
-                        name: "kind"
-                        widget: "select"
-                        options: ["photo", "book"]
-
-              - label: "CTA Band"
-                name: "cta_band"
-                widget: "object"
-                fields:
-                  - { label: "Module ID", name: "id", widget: "string" }
-                  - { label: "Type", name: "type", widget: "hidden", default: "cta_band" }
-                  - { label: "Enabled", name: "enabled", widget: "boolean", default: true }
-                  - label: "Variant"
-                    name: "variant"
-                    widget: "select"
-                    options: ["compact", "standard", "expanded"]
-                    default: "standard"
-                  - { label: "Order", name: "order", widget: "number", value_type: "int" }
-                  - { label: "Title", name: "title", widget: "string" }
-                  - { label: "Primary label", name: "primaryLabel", widget: "string" }
-                  - { label: "Secondary label", name: "secondaryLabel", widget: "string" }
-
-              - label: "Contact Block"
-                name: "contact_block"
-                widget: "object"
-                fields:
-                  - { label: "Module ID", name: "id", widget: "string" }
-                  - { label: "Type", name: "type", widget: "hidden", default: "contact_block" }
-                  - { label: "Enabled", name: "enabled", widget: "boolean", default: true }
-                  - label: "Variant"
-                    name: "variant"
-                    widget: "select"
-                    options: ["compact", "standard", "expanded"]
-                    default: "standard"
-                  - { label: "Order", name: "order", widget: "number", value_type: "int" }
-                  - { label: "Title", name: "title", widget: "string" }
-                  - { label: "Lead", name: "lead", widget: "text" }
-                  - { label: "Email", name: "email", widget: "string" }
-                  - { label: "Phone display", name: "phoneDisplay", widget: "string" }
-                  - { label: "Phone link", name: "phoneLink", widget: "string" }
-                  - { label: "Address", name: "address", widget: "string", required: false }
-
-              - label: "Social Feed"
-                name: "social_feed"
-                widget: "object"
-                fields:
-                  - { label: "Module ID", name: "id", widget: "string" }
-                  - { label: "Type", name: "type", widget: "hidden", default: "social_feed" }
-                  - { label: "Enabled", name: "enabled", widget: "boolean", default: false }
-                  - label: "Variant"
-                    name: "variant"
-                    widget: "select"
-                    options: ["compact", "standard", "expanded"]
-                    default: "standard"
-                  - { label: "Order", name: "order", widget: "number", value_type: "int" }
-                  - label: "Provider"
-                    name: "provider"
-                    widget: "select"
-                    options: ["taggbox"]
-                    default: "taggbox"
-                  - { label: "Widget ID", name: "widgetId", widget: "string", required: false }
-                  - label: "Profile sources"
-                    name: "profileSources"
-                    widget: "list"
-                    required: false
-                    field: { label: "Source", name: "source", widget: "string" }
-                  - { label: "Refresh cadence", name: "refreshCadence", widget: "string", default: "daily" }
-                  - { label: "Title", name: "title", widget: "string", required: false }
-                  - { label: "Lead", name: "lead", widget: "text", required: false }
-
-  - name: "pages"
-    label: "Pages"
-    files:
-      - label: "About Page"
-        name: "about"
-        file: "src/pages/about.md"
+      - label: "Kontakt"
+        name: "contact_copy"
+        file: "src/data/editor/contact-copy.json"
+        format: "json"
         fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Body", name: "body", widget: "markdown" }
+          - label: "Hero"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+              - { label: "Tittel", name: "title", widget: "string" }
+              - { label: "Ingress", name: "lead", widget: "text" }
+              - { label: "Primarknapp", name: "primaryActionLabel", widget: "string" }
 
-  - name: "blog"
-    label: "Blog"
-    folder: "src/pages/blog"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Body", name: "body", widget: "markdown" }
+          - label: "Innhold"
+            name: "content"
+            widget: "object"
+            fields:
+              - { label: "Tittel for direkte kontakt", name: "directTitle", widget: "string" }
+              - { label: "Stotte-eyebrow", name: "supportEyebrow", widget: "string" }
+              - { label: "Stottetekst", name: "supportBody", widget: "text" }

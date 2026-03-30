@@ -1,7 +1,8 @@
 ---
+import SubpageShell from '../components/SubpageShell.astro';
 import { homepageContent } from '../config/homepage';
-import { SERVICES_URL } from '../config/site';
-import ServiceBrandLogo from '../components/ui/ServiceBrandLogo.astro';
+import { serviceMedia, serviceMeta } from '../config/service-media';
+import { BOOKING_URL, CONTACT_URL, SERVICES_URL, WAVE_EMBED_STATIC } from '../config/site';
 
 interface Props {
   service: 'physio' | 'women' | 'waves';
@@ -9,62 +10,100 @@ interface Props {
 
 const { service } = Astro.props;
 const content = homepageContent.services[service];
+const pageCopy = homepageContent.servicePages[service];
+const media = service === 'waves' ? null : serviceMedia[service];
+const primaryAction = {
+  physio: { href: BOOKING_URL, label: pageCopy.primaryActionLabel },
+  women: { href: CONTACT_URL, label: pageCopy.primaryActionLabel },
+  waves: { href: CONTACT_URL, label: pageCopy.primaryActionLabel },
+}[service];
 ---
 
 <main class="home-page" id="top">
-  <section class="services-showcase" aria-label={content.title}>
-    <div class="container services-showcase__stack">
-      {
-        service === 'physio' && (
-          <article class="services-showcase__card">
-            <ServiceBrandLogo variant="physio" class="services-showcase__brand" />
-            <p class="services-showcase__lead">{homepageContent.services.physio.lead}</p>
+  <SubpageShell
+    eyebrow={serviceMeta[service].eyebrow}
+    title={content.title}
+    lead={pageCopy.detailLead}
+    media={media ?? undefined}
+    primaryActionHref={primaryAction.href}
+    primaryActionLabel={primaryAction.label}
+  >
+    {
+      service === 'waves' && (
+        <div slot="media" class="subpage-shell__wave-frame">
+          <div class="services-wave-teaser services-wave-teaser--large" aria-hidden="true">
+            <iframe src={WAVE_EMBED_STATIC} title="Dekorativt bolgesymbol" loading="lazy"></iframe>
+          </div>
+        </div>
+      )
+    }
 
-            <div class="services-topics" aria-label="Temaer i Sound of Physio">
-              {homepageContent.services.physio.moreTopics.map((topic) => (
-                <details class="services-topic">
-                  <summary>{topic}</summary>
-                </details>
-              ))}
+    {
+      service === 'physio' && (
+        <div class="subpage-grid subpage-grid--content-aside">
+          <article class="subpage-card">
+            <h2 class="subpage-card__title">{pageCopy.detailTitle}</h2>
+            <p class="subpage-card__body">{homepageContent.services.physio.lead}</p>
+            <div class="subpage-pill-list" aria-label="Temaer i Sound of Physio">
+              {homepageContent.services.physio.moreTopics.map((topic) => <span class="subpage-pill">{topic}</span>)}
             </div>
-
-            <a href={SERVICES_URL} class="hero-btn hero-btn--light">Tilbake til tjenester</a>
           </article>
-        )
-      }
 
-      {
-        service === 'women' && (
-          <article class="services-showcase__card">
-            <ServiceBrandLogo variant="women" class="services-showcase__brand" />
-            <p class="services-showcase__lead">{homepageContent.services.women.lead}</p>
+          <aside class="subpage-card subpage-card--support">
+            <p class="subpage-card__eyebrow">{pageCopy.supportEyebrow}</p>
+            <p class="subpage-card__body">{pageCopy.supportBody}</p>
+            <div class="subpage-card__actions">
+              <a href={SERVICES_URL} class="subpage-text-link">Tilbake til tjenester</a>
+            </div>
+          </aside>
+        </div>
+      )
+    }
 
-            <div class="services-women-grid">
+    {
+      service === 'women' && (
+        <div class="subpage-grid subpage-grid--content-aside">
+          <article class="subpage-card">
+            <h2 class="subpage-card__title">{pageCopy.detailTitle}</h2>
+            <div class="subpage-nested-grid">
               {homepageContent.services.women.blocks.map((block) => (
-                <article class="services-women-card">
+                <article class="subpage-mini-card">
                   <h3>{block.title}</h3>
                   <p>{block.body}</p>
-                  <a href={block.ctaHref} class="hero-btn hero-btn--primary">{block.ctaLabel}</a>
-                  {block.ctaPending && <p class="services-link-note">Lenke kommer</p>}
                 </article>
               ))}
             </div>
-
-            <a href={SERVICES_URL} class="hero-btn hero-btn--light">Tilbake til tjenester</a>
           </article>
-        )
-      }
 
-      {
-        service === 'waves' && (
-          <article class="services-showcase__card services-showcase__card--waves">
-            <ServiceBrandLogo variant="waves" class="services-showcase__brand" />
-            <p class="services-showcase__lead">{homepageContent.services.waves.lead}</p>
+          <aside class="subpage-card subpage-card--support">
+            <p class="subpage-card__eyebrow">{pageCopy.supportEyebrow}</p>
+            <p class="subpage-card__body">{pageCopy.supportBody}</p>
+            <div class="subpage-card__actions">
+              <a href={SERVICES_URL} class="subpage-text-link">Tilbake til tjenester</a>
+            </div>
+          </aside>
+        </div>
+      )
+    }
+
+    {
+      service === 'waves' && (
+        <div class="subpage-grid subpage-grid--content-aside">
+          <article class="subpage-card">
+            <h2 class="subpage-card__title">{pageCopy.detailTitle}</h2>
+            <p class="subpage-card__body">{homepageContent.services.waves.lead}</p>
             <p class="services-launch-pill">{homepageContent.services.waves.launchLabel}</p>
-            <a href={SERVICES_URL} class="hero-btn hero-btn--light">Tilbake til tjenester</a>
           </article>
-        )
-      }
-    </div>
-  </section>
+
+          <aside class="subpage-card subpage-card--support">
+            <p class="subpage-card__eyebrow">{pageCopy.supportEyebrow}</p>
+            <p class="subpage-card__body">{pageCopy.supportBody}</p>
+            <div class="subpage-card__actions">
+              <a href={SERVICES_URL} class="subpage-text-link">Tilbake til tjenester</a>
+            </div>
+          </aside>
+        </div>
+      )
+    }
+  </SubpageShell>
 </main>

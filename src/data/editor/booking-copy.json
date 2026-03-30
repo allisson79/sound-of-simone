@@ -1,0 +1,15 @@
+{
+  "hero": {
+    "eyebrow": "Bestill time",
+    "title": "Bestill time via kontakt",
+    "lead": "Ta kontakt for a avtale time. Online booking kobles pa senere, men veien inn skal fortsatt oppleves enkel og tydelig.",
+    "primaryActionLabel": "Ta kontakt"
+  },
+  "content": {
+    "sectionTitle": "Slik fungerer booking akkurat na",
+    "lead": "Online booking kobles pa senere. Frem til da avtales time raskt via e-post eller telefon.",
+    "statusLabel": "Svar pa henvendelser gis fortlopende",
+    "nextStepEyebrow": "Neste steg",
+    "nextStepBody": "Send en kort henvendelse pa e-post eller telefon, sa finner vi et tidspunkt som passer."
+  }
+}

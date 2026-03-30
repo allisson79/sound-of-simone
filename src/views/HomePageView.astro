@@ -1,8 +1,12 @@
 ---
 import SectionRenderer from '../components/SectionRenderer.astro';
 import { homepageModules } from '../config/homepage';
+
+const modulesForHome = homepageModules.filter((module) => {
+  return module.type !== 'service_cards' && module.type !== 'gallery' && module.type !== 'contact_block';
+});
 ---
 
 <main class="home-page" id="top">
-  {homepageModules.map((module) => <SectionRenderer module={module} />)}
+  {modulesForHome.map((module) => <SectionRenderer module={module} />)}
 </main>

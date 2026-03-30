@@ -94,6 +94,9 @@ if [ ! -d "node_modules" ]; then
   npm ci
 fi
 
+echo "Cleaning dist..."
+rm -rf dist
+
 echo "Building site..."
 npm run build
 verify_generated_admin_config "${REPO_OWNER}/${REPO_NAME}" "$CMS_BRANCH" "$CMS_SITE_ORIGIN" "$CMS_DISPLAY_ORIGIN"

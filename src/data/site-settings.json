@@ -1,14 +1,14 @@
 {
   "brand": {
-    "name": "Kunde Utkast",
-    "tagline": "Design- og innholdssystem for raske leveranser",
-    "logoAriaLabel": "Kunde Utkast",
+    "name": "Sound of Simone",
+    "tagline": "Fysioterapi og fagformidling innen kvinnehelse",
+    "logoAriaLabel": "Sound of Simone",
     "homeLinkAriaLabel": "Ga til forsiden"
   },
   "seo": {
-    "defaultTitle": "Kunde Utkast - Design- og innholdssystem for raske leveranser",
-    "titleSuffix": "Kunde Utkast",
-    "description": "Bruk denne templaten til rask lansering med god struktur for innhold, design og konvertering."
+    "defaultTitle": "Sound of Simone | Fysioterapi og fagformidling innen kvinnehelse",
+    "titleSuffix": "Sound of Simone",
+    "description": "Sound of Simone tilbyr fysioterapi, foredrag og faglig samarbeid innen kvinnehelse."
   },
   "localization": {
     "mode": "single",
@@ -37,7 +37,7 @@
         "kind": "menu"
       },
       {
-        "label": "Book time",
+        "label": "Bestill time",
         "href": "/booking",
         "kind": "link"
       },
@@ -49,47 +49,59 @@
     ],
     "menuGroups": [
       {
-        "title": "Hoved",
+        "title": "Meny",
         "items": [
           {
             "label": "Hjem",
             "href": "/"
           },
           {
-            "label": "Om",
-            "href": "/om"
+            "label": "Om Simone",
+            "href": "/#om-simone"
+          },
+          {
+            "label": "Tjenester",
+            "href": "/tjenester"
+          },
+          {
+            "label": "Bestill time",
+            "href": "/booking"
+          },
+          {
+            "label": "Kontakt",
+            "href": "/kontakt"
           }
         ]
       }
     ],
     "servicesMenuLinks": [
       {
-        "label": "Service A",
+        "label": "Sound of Physio",
         "href": "/tjenester/sound-of-physio"
       },
       {
-        "label": "Service B",
+        "label": "Sound of Women",
         "href": "/tjenester/sound-of-women"
       },
       {
-        "label": "Service C",
+        "label": "Sound of Waves",
         "href": "/tjenester/sound-of-waves"
       }
     ]
   },
   "contact": {
-    "email": "kontakt@kunde-utkast.no",
-    "phoneDisplay": "99 88 77 66",
-    "phoneLink": "99887766",
+    "email": "hei@soundofsimone.no",
+    "phoneDisplay": "911 70 100",
+    "phoneLink": "91170100",
     "address": ""
   },
   "booking": {
-    "title": "Book via kontakt i denne fasen",
-    "lead": "Direkte bookingintegrasjon kan kobles pa i neste fase.",
-    "statusLabel": "Booking handteres manuelt via kontakt",
-    "ctaLabel": "Bestill time"
+    "title": "Bestill time via kontakt",
+    "lead": "Online booking kobles pa senere. Frem til da avtales time raskt via e-post eller telefon.",
+    "statusLabel": "Svar pa henvendelser gis fortlopende",
+    "ctaLabel": "Ta kontakt"
   },
   "footer": {
-    "legalText": "Alle rettigheter forbeholdt."
+    "legalText": "Sound of Simone. Alle rettigheter forbeholdt."
   }
 }

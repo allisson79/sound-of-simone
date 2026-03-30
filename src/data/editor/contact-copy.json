@@ -1,0 +1,13 @@
+{
+  "hero": {
+    "eyebrow": "Kontakt",
+    "title": "Kontakt Simone",
+    "lead": "Ta kontakt for vurdering, booking eller faglig samarbeid. Her ligger kontaktinformasjonen samlet ett sted, uten unodvendig gjentakelse andre steder.",
+    "primaryActionLabel": "Send e-post"
+  },
+  "content": {
+    "directTitle": "Direkte kontakt",
+    "supportEyebrow": "Henvendelser",
+    "supportBody": "Ta kontakt for vurdering, booking eller samarbeid. Du far raskt svar pa e-post eller telefon."
+  }
+}

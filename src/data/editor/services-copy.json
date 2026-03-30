@@ -1,0 +1,61 @@
+{
+  "overview": {
+    "eyebrow": "Tjenester",
+    "title": "Fysioterapi, fagformidling og nye spor i utvikling",
+    "lead": "Her finner du de tre retningene i Sound of Simone, presentert i samme rolige format som resten av nettstedet.",
+    "primaryActionLabel": "Bestill time"
+  },
+  "physio": {
+    "title": "Sound of Physio",
+    "lead": "Jeg tilbyr fysioterapi for bekkenbunn, bekken, mage, svangerskap og overgangsfaser, med behandling bade fysisk ved Saksvik-klinikken og online.",
+    "moreTopics": [
+      "Bekkenbunn",
+      "Bekken",
+      "Mage",
+      "Graviditet og smabarnstid",
+      "Perimenopause og overgangsalder",
+      "Pris"
+    ],
+    "detailLead": "Behandling og oppfolging innen bekkenbunn, bekken, mage og kvinnehelsefaser.",
+    "detailTitle": "Hva jeg hjelper deg med",
+    "supportEyebrow": "Neste steg",
+    "supportBody": "Bestill time dersom du onsker vurdering, behandling eller en tydelig plan videre.",
+    "primaryActionLabel": "Bestill time"
+  },
+  "women": {
+    "title": "Sound of Women",
+    "lead": "Jeg holder foredrag, bidrar med faglig innhold og samarbeider med virksomheter som vil ta kvinnehelse pa alvor.",
+    "blocks": [
+      {
+        "title": "Foredrag",
+        "body": "Jeg holder foredrag om kvinnehelse for klinikker, fagmiljoer, bedrifter og arrangementer som trenger tydelig og anvendelig formidling.",
+        "ctaLabel": "Ta kontakt"
+      },
+      {
+        "title": "Samarbeid",
+        "body": "Jeg samarbeider med konsepter og aktorer som Core & Floor og Hemmelig, der kvinnehelse skal omsettes til konkrete kurs, ressurser og gode opplevelser.",
+        "ctaLabel": "La oss snakkes"
+      },
+      {
+        "title": "Faglig bistand",
+        "body": "Jeg bidrar gjerne med innhold, faglige vurderinger og opplegg tilpasset deres organisasjon, enten det gjelder bedrifter, forbund eller foreninger.",
+        "ctaLabel": "Ta kontakt"
+      }
+    ],
+    "detailLead": "Foredrag, samarbeid og faglig bistand for virksomheter som vil ta kvinnehelse pa alvor.",
+    "detailTitle": "Hvordan jeg kan bidra",
+    "supportEyebrow": "Kontakt",
+    "supportBody": "Ta kontakt dersom du onsker foredrag, faglig samarbeid eller innhold tilpasset ditt fagmiljo.",
+    "primaryActionLabel": "Ta kontakt"
+  },
+  "waves": {
+    "title": "Sound of Waves",
+    "lead": "Sound of Waves er fortsatt under utvikling. Inntil videre lar jeg bolgesymbolet gi et lite forvarsel om det som kommer.",
+    "launchLabel": "Under utvikling",
+    "detailLead": "Et roligere teaser-spor for det som fortsatt er under utvikling.",
+    "detailTitle": "Et nytt spor i utvikling",
+    "supportEyebrow": "Folg med",
+    "supportBody": "Har du sporsmal eller onsker a hore mer om dette sporet nar det er klart, er du velkommen til a ta kontakt.",
+    "primaryActionLabel": "Ta kontakt"
+  }
+}

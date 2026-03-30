@@ -67,6 +67,9 @@ if [ ! -d "node_modules" ]; then
   npm ci
 fi
 
+echo "Cleaning dist..."
+rm -rf dist
+
 echo "Building site..."
 npm run build
 
